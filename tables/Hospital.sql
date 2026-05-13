@@ -1,4 +1,14 @@
 --=============================
+--=    DATABASE CREATION     =
+--=============================
+
+CREATE DATABASE hospital;
+
+\c hospital;
+
+SET search_path TO public;
+
+--=============================
 --=    DATA TRANSFORMATIONS   =
 --=============================
 
