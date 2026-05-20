@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS employees (
     id BIGSERIAL,
     document_type VARCHAR(15) NOT NULL DEFAULT 'DNI',
     document_number VARCHAR(20) NOT NULL,
-    date_birth DATE,
+    birth_date DATE,
     employee_name VARCHAR(50) NOT NULL,
     employee_surname VARCHAR(80) NOT NULL,
     PRIMARY KEY (id),
@@ -219,7 +219,7 @@ CREATE TABLE patient_permissions (
     FOREIGN KEY (page_id) REFERENCES pages(id) ON DELETE CASCADE
 );
 
--- Una cuenta web pertenece a un empleado O a un paciente o a ambos, nunca a ninguno o sanitario o administrativo.
+-- Una cuenta web pertenece a un empleado O a un paciente o a ambos, nunca a ninguno o sanitario y administrativo.
 CREATE TABLE web_accounts (
     id BIGSERIAL,
 
@@ -284,11 +284,24 @@ CREATE TABLE administrative_staff (
     FOREIGN KEY (employee_id) REFERENCES employees (id) ON DELETE CASCADE
 );
 
+CREATE TABLE appointment_reasons (
+    id BIGSERIAL PRIMARY KEY,
+
+    reason_name VARCHAR(100) NOT NULL UNIQUE,
+
+    is_active BOOLEAN NOT NULL DEFAULT true
+);
+
 CREATE TABLE appointments (
     id BIGSERIAL,
 
     appointment_start TIMESTAMPTZ NOT NULL,
     appointment_end TIMESTAMPTZ NOT NULL,
+
+    appointment_reason_id BIGINT NULL,
+    custom_reason VARCHAR(120) NULL,
+
+    appointment_details TEXT NULL,
 
     patient_id BIGINT NOT NULL,
     medical_staff_id BIGINT NOT NULL,
@@ -307,14 +320,29 @@ CREATE TABLE appointments (
         appointment_end > appointment_start
     ),
 
+    CHECK (
+        appointment_reason_id IS NOT NULL
+        OR custom_reason IS NOT NULL
+    ),
+
+    FOREIGN KEY (appointment_reason_id)
+        REFERENCES appointment_reasons(id),
+
     FOREIGN KEY (patient_id)
         REFERENCES patients(id),
 
     FOREIGN KEY (medical_staff_id)
         REFERENCES medical_staff(id),
 
+    CONSTRAINT no_doctor_overlap
     EXCLUDE USING gist (
         medical_staff_id WITH =,
+        appointment_range WITH &&
+    ),
+
+    CONSTRAINT no_patient_overlap
+    EXCLUDE USING gist (
+        patient_id WITH =,
         appointment_range WITH &&
     )
 );
