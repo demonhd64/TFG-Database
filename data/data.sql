@@ -459,7 +459,7 @@ INSERT INTO pages (page_key, page_label, page_url, section, is_active) VALUES
 --= EMPLOYEES
 --==========================
 
-INSERT INTO employees (document_type, document_number, date_birth, employee_name, employee_surname) VALUES
+INSERT INTO employees (document_type, document_number, birth_date, employee_name, employee_surname) VALUES
 ('DNI','12345678A', '1980-05-12', 'CARLOS',   'LOPEZ'),
 ('DNI','23456789B', '1988-09-21', 'MARIA',    'GARCIA'),
 ('DNI','34567890C', '1992-02-11', 'LUCIA',    'FERNANDEZ'),
@@ -1114,72 +1114,112 @@ CROSS JOIN LATERAL (
 ) e;
 
 --==========================
+--= APPOINTMENT REASONS
+--==========================
+
+INSERT INTO appointment_reasons (reason_name) VALUES
+('Primera consulta'),
+('Revisión de seguimiento'),
+('Consulta diagnóstica'),
+('Control clínico'),
+('Consulta especializada'),
+('Seguimiento de especialidad'),
+('Consulta de revisión'),
+('Revisión preingreso'),
+('Control general'),
+('Revisión final');
+
+--==========================
 --= APPOINTMENTS
 --==========================
 
 INSERT INTO appointments (
     appointment_start,
     appointment_end,
+    appointment_reason_id,
+    appointment_details,
     patient_id,
     medical_staff_id
 ) VALUES
-('2026-05-12 09:00:00+02', '2026-05-12 09:30:00+02', 1, 1),
-('2026-05-12 09:30:00+02', '2026-05-12 10:00:00+02', 2, 2),
-('2026-05-12 10:00:00+02', '2026-05-12 10:30:00+02', 3, 3),
-('2026-05-12 10:30:00+02', '2026-05-12 11:00:00+02', 4, 4),
-('2026-05-12 11:00:00+02', '2026-05-12 11:30:00+02', 5, 5),
 
-('2026-05-13 09:00:00+02', '2026-05-13 09:30:00+02', 6, 6),
-('2026-05-13 09:30:00+02', '2026-05-13 10:00:00+02', 7, 7),
-('2026-05-13 10:00:00+02', '2026-05-13 10:30:00+02', 8, 8),
-('2026-05-13 10:30:00+02', '2026-05-13 11:00:00+02', 9, 9),
-('2026-05-13 11:00:00+02', '2026-05-13 11:30:00+02', 10, 10),
+-- Primera consulta
+('2026-05-12 09:00:00+02', '2026-05-12 09:30:00+02', 1, 'Consulta inicial programada para valoración general.', 1, 1),
+('2026-05-12 09:30:00+02', '2026-05-12 10:00:00+02', 1, 'Consulta inicial programada para valoración general.', 2, 2),
+('2026-05-12 10:00:00+02', '2026-05-12 10:30:00+02', 1, 'Consulta inicial programada para valoración general.', 3, 3),
+('2026-05-12 10:30:00+02', '2026-05-12 11:00:00+02', 1, 'Consulta inicial programada para valoración general.', 4, 4),
+('2026-05-12 11:00:00+02', '2026-05-12 11:30:00+02', 1, 'Consulta inicial programada para valoración general.', 5, 5),
 
-('2026-05-14 09:00:00+02', '2026-05-14 09:30:00+02', 11, 11),
-('2026-05-14 09:30:00+02', '2026-05-14 10:00:00+02', 12, 12),
-('2026-05-14 10:00:00+02', '2026-05-14 10:30:00+02', 13, 13),
-('2026-05-14 10:30:00+02', '2026-05-14 11:00:00+02', 14, 14),
-('2026-05-14 11:00:00+02', '2026-05-14 11:30:00+02', 15, 15),
-('2026-05-16 09:00:00+02','2026-05-16 09:30:00+02',56,2),
-('2026-05-16 09:30:00+02','2026-05-16 10:00:00+02',57,4),
-('2026-05-16 10:00:00+02','2026-05-16 10:30:00+02',58,6),
-('2026-05-16 10:30:00+02','2026-05-16 11:00:00+02',59,8),
-('2026-05-16 11:00:00+02','2026-05-16 11:30:00+02',60,10),
+-- Revisión de seguimiento
+('2026-05-13 09:00:00+02', '2026-05-13 09:30:00+02', 2, 'Revisión de la evolución y ajuste de indicaciones.', 6, 6),
+('2026-05-13 09:30:00+02', '2026-05-13 10:00:00+02', 2, 'Revisión de la evolución y ajuste de indicaciones.', 7, 7),
+('2026-05-13 10:00:00+02', '2026-05-13 10:30:00+02', 2, 'Revisión de la evolución y ajuste de indicaciones.', 8, 8),
+('2026-05-13 10:30:00+02', '2026-05-13 11:00:00+02', 2, 'Revisión de la evolución y ajuste de indicaciones.', 9, 9),
+('2026-05-13 11:00:00+02', '2026-05-13 11:30:00+02', 2, 'Revisión de la evolución y ajuste de indicaciones.', 10, 10),
 
-('2026-05-17 09:00:00+02','2026-05-17 09:30:00+02',61,12),
-('2026-05-17 09:30:00+02','2026-05-17 10:00:00+02',62,14),
-('2026-05-17 10:00:00+02','2026-05-17 10:30:00+02',63,16),
-('2026-05-17 10:30:00+02','2026-05-17 11:00:00+02',64,18),
-('2026-05-17 11:00:00+02','2026-05-17 11:30:00+02',65,20),
+-- Consulta diagnóstica
+('2026-05-14 09:00:00+02', '2026-05-14 09:30:00+02', 3, 'Valoración clínica y revisión de pruebas previas.', 11, 11),
+('2026-05-14 09:30:00+02', '2026-05-14 10:00:00+02', 3, 'Valoración clínica y revisión de pruebas previas.', 12, 12),
+('2026-05-14 10:00:00+02', '2026-05-14 10:30:00+02', 3, 'Valoración clínica y revisión de pruebas previas.', 13, 13),
+('2026-05-14 10:30:00+02', '2026-05-14 11:00:00+02', 3, 'Valoración clínica y revisión de pruebas previas.', 14, 14),
+('2026-05-14 11:00:00+02', '2026-05-14 11:30:00+02', 3, 'Valoración clínica y revisión de pruebas previas.', 15, 15),
 
-('2026-05-18 09:00:00+02','2026-05-18 09:30:00+02',66,22),
-('2026-05-18 09:30:00+02','2026-05-18 10:00:00+02',67,24),
-('2026-05-18 10:00:00+02','2026-05-18 10:30:00+02',68,26),
-('2026-05-18 10:30:00+02','2026-05-18 11:00:00+02',69,28),
-('2026-05-18 11:00:00+02','2026-05-18 11:30:00+02',70,30),
+-- Control clínico
+('2026-05-16 09:00:00+02', '2026-05-16 09:30:00+02', 4, 'Control y seguimiento de la evolución del paciente.', 56, 2),
+('2026-05-16 09:30:00+02', '2026-05-16 10:00:00+02', 4, 'Control y seguimiento de la evolución del paciente.', 57, 4),
+('2026-05-16 10:00:00+02', '2026-05-16 10:30:00+02', 4, 'Control y seguimiento de la evolución del paciente.', 58, 6),
+('2026-05-16 10:30:00+02', '2026-05-16 11:00:00+02', 4, 'Control y seguimiento de la evolución del paciente.', 59, 8),
+('2026-05-16 11:00:00+02', '2026-05-16 11:30:00+02', 4, 'Control y seguimiento de la evolución del paciente.', 60, 10),
 
-('2026-05-19 09:00:00+02','2026-05-19 09:30:00+02',71,32),
-('2026-05-19 09:30:00+02','2026-05-19 10:00:00+02',72,34),
-('2026-05-19 10:00:00+02','2026-05-19 10:30:00+02',73,36),
-('2026-05-19 10:30:00+02','2026-05-19 11:00:00+02',74,38),
-('2026-05-19 11:00:00+02','2026-05-19 11:30:00+02',75,40),
-('2026-06-01 08:00:00+02','2026-06-01 08:30:00+02',76,1),
-('2026-06-01 08:30:00+02','2026-06-01 09:00:00+02',77,1),
-('2026-06-01 09:00:00+02','2026-06-01 09:30:00+02',78,1),
-('2026-06-01 09:30:00+02','2026-06-01 10:00:00+02',79,1),
-('2026-06-01 10:00:00+02','2026-06-01 10:30:00+02',80,1),
+-- Consulta especializada
+('2026-05-17 09:00:00+02', '2026-05-17 09:30:00+02', 5, 'Valoración por especialidad y revisión de síntomas.', 61, 12),
+('2026-05-17 09:30:00+02', '2026-05-17 10:00:00+02', 5, 'Valoración por especialidad y revisión de síntomas.', 62, 14),
+('2026-05-17 10:00:00+02', '2026-05-17 10:30:00+02', 5, 'Valoración por especialidad y revisión de síntomas.', 63, 16),
+('2026-05-17 10:30:00+02', '2026-05-17 11:00:00+02', 5, 'Valoración por especialidad y revisión de síntomas.', 64, 18),
+('2026-05-17 11:00:00+02', '2026-05-17 11:30:00+02', 5, 'Valoración por especialidad y revisión de síntomas.', 65, 20),
 
-('2026-06-02 08:00:00+02','2026-06-02 08:30:00+02',81,1),
-('2026-06-02 08:30:00+02','2026-06-02 09:00:00+02',82,1),
-('2026-06-02 09:00:00+02','2026-06-02 09:30:00+02',83,1),
-('2026-06-02 09:30:00+02','2026-06-02 10:00:00+02',84,1),
-('2026-06-02 10:00:00+02','2026-06-02 10:30:00+02',85,1),
+-- Seguimiento de especialidad
+('2026-05-18 09:00:00+02', '2026-05-18 09:30:00+02', 6, 'Control evolutivo y ajuste de tratamiento.', 66, 22),
+('2026-05-18 09:30:00+02', '2026-05-18 10:00:00+02', 6, 'Control evolutivo y ajuste de tratamiento.', 67, 24),
+('2026-05-18 10:00:00+02', '2026-05-18 10:30:00+02', 6, 'Control evolutivo y ajuste de tratamiento.', 68, 26),
+('2026-05-18 10:30:00+02', '2026-05-18 11:00:00+02', 6, 'Control evolutivo y ajuste de tratamiento.', 69, 28),
+('2026-05-18 11:00:00+02', '2026-05-18 11:30:00+02', 6, 'Control evolutivo y ajuste de tratamiento.', 70, 30),
 
-('2026-06-03 08:00:00+02','2026-06-03 08:30:00+02',86,1),
-('2026-06-03 08:30:00+02','2026-06-03 09:00:00+02',87,1),
-('2026-06-03 09:00:00+02','2026-06-03 09:30:00+02',88,1),
-('2026-06-03 09:30:00+02','2026-06-03 10:00:00+02',89,1),
-('2026-06-03 10:00:00+02','2026-06-03 10:30:00+02',90,1);
+-- Consulta de revisión
+('2026-05-19 09:00:00+02', '2026-05-19 09:30:00+02', 7, 'Seguimiento del paciente y evolución clínica.', 71, 32),
+('2026-05-19 09:30:00+02', '2026-05-19 10:00:00+02', 7, 'Seguimiento del paciente y evolución clínica.', 72, 34),
+('2026-05-19 10:00:00+02', '2026-05-19 10:30:00+02', 7, 'Seguimiento del paciente y evolución clínica.', 73, 36),
+('2026-05-19 10:30:00+02', '2026-05-19 11:00:00+02', 7, 'Seguimiento del paciente y evolución clínica.', 74, 38),
+('2026-05-19 11:00:00+02', '2026-05-19 11:30:00+02', 7, 'Seguimiento del paciente y evolución clínica.', 75, 40),
+
+-- Revisión preingreso
+('2026-06-01 08:00:00+02', '2026-06-01 08:30:00+02', 8, 'Valoración previa al ingreso o control ambulatorio.', 76, 1),
+('2026-06-01 08:30:00+02', '2026-06-01 09:00:00+02', 8, 'Valoración previa al ingreso o control ambulatorio.', 77, 1),
+('2026-06-01 09:00:00+02', '2026-06-01 09:30:00+02', 8, 'Valoración previa al ingreso o control ambulatorio.', 78, 1),
+('2026-06-01 09:30:00+02', '2026-06-01 10:00:00+02', 8, 'Valoración previa al ingreso o control ambulatorio.', 79, 1),
+('2026-06-01 10:00:00+02', '2026-06-01 10:30:00+02', 8, 'Valoración previa al ingreso o control ambulatorio.', 80, 1),
+
+-- Control general
+('2026-06-02 08:00:00+02', '2026-06-02 08:30:00+02', 9, 'Consulta de control y seguimiento general.', 81, 1),
+('2026-06-02 08:30:00+02', '2026-06-02 09:00:00+02', 9, 'Consulta de control y seguimiento general.', 82, 1),
+('2026-06-02 09:00:00+02', '2026-06-02 09:30:00+02', 9, 'Consulta de control y seguimiento general.', 83, 1),
+('2026-06-02 09:30:00+02', '2026-06-02 10:00:00+02', 9, 'Consulta de control y seguimiento general.', 84, 1),
+('2026-06-02 10:00:00+02', '2026-06-02 10:30:00+02', 9, 'Consulta de control y seguimiento general.', 85, 1),
+
+-- Revisión final
+('2026-06-03 08:00:00+02', '2026-06-03 08:30:00+02', 10, 'Consulta de cierre y seguimiento final.', 86, 1),
+('2026-06-03 08:30:00+02', '2026-06-03 09:00:00+02', 10, 'Consulta de cierre y seguimiento final.', 87, 1),
+('2026-06-03 09:00:00+02', '2026-06-03 09:30:00+02', 10, 'Consulta de cierre y seguimiento final.', 88, 1),
+('2026-06-03 09:30:00+02', '2026-06-03 10:00:00+02', 10, 'Consulta de cierre y seguimiento final.', 89, 1),
+('2026-06-03 10:00:00+02', '2026-06-03 10:30:00+02', 10, 'Consulta de cierre y seguimiento final.', 90, 1);
+-- Some custome reasons
+('2026-06-04 09:00:00+02', '2026-06-04 09:30:00+02', 'Dolor abdominal agudo', 'Paciente refiere dolor intenso desde la noche anterior.', 16, 1),
+('2026-06-04 09:30:00+02', '2026-06-04 10:00:00+02', 'Caída con contusión leve', 'Golpe en la muñeca tras una caída doméstica.', 17, 2),
+('2026-06-04 10:00:00+02', '2026-06-04 10:30:00+02', 'Resultados de analítica fuera de rango', 'Revisión de valores alterados detectados en pruebas recientes.', 18, 3),
+('2026-06-04 10:30:00+02', '2026-06-04 11:00:00+02', 'Molestias respiratorias', 'Paciente comenta tos persistente y sensación de opresión.', 19, 4),
+('2026-06-04 11:00:00+02', '2026-06-04 11:30:00+02', 'Revisión de tratamiento', 'Se revisa tolerancia al tratamiento actual y posibles ajustes.', 20, 5),
+('2026-06-05 09:00:00+02', '2026-06-05 09:30:00+02', 'Consulta por ansiedad', 'Paciente solicita valoración por episodios de ansiedad.', 21, 6),
+('2026-06-05 09:30:00+02', '2026-06-05 10:00:00+02', 'Dolor cervical', 'Molestias cervicales asociadas a postura laboral.', 22, 7),
+('2026-06-05 10:00:00+02', '2026-06-05 10:30:00+02', 'Seguimiento de prueba de imagen', 'Consulta para comentar el resultado de la prueba realizada.', 23, 8);
 
 --==========================
 --= REPORTS
@@ -1678,56 +1718,56 @@ INSERT INTO patient_permissions (page_id) VALUES
 --==========================
 
 INSERT INTO patients (document_type, document_number, patient_name, patient_surname, birth_date, gender, blood_type) VALUES
-('DNI','61000001E','Alejandro','Vidal','1985-03-12','M','A+'),
-('DNI','61000002T','Beatriz','Saez','1992-07-24','F','O+'),
-('DNI','61000003R','Carlos','Montero','1978-11-05','M','B+'),
-('DNI','61000004W','Diana','Reyes','1990-01-30','F','AB+'),
-('DNI','61000005A','Eduardo','Jimenez','1983-06-18','M','O-'),
-('DNI','61000006G','Fatima','Alonso','1997-09-09','F','A-'),
-('DNI','61000007M','Gonzalo','Pena','1975-04-04','M','B-'),
-('DNI','61000008Y','Helena','Cano','1988-12-21','F','A+'),
-('DNI','61000009F','Ignacio','Merino','1994-02-14','M','O+'),
-('DNI','61000010P','Julia','Rubio','1981-08-08','F','AB-'),
-('DNI','61000011D','Kevin','Iborra','2000-05-05','M','A+'),
-('DNI','61000012X','Lidia','Paredes','1986-10-17','F','O+'),
-('DNI','61000013B','Marco','Esteban','1973-03-25','M','B+'),
-('DNI','61000014N','Natalia','Zamora','1999-06-30','F','A-'),
-('DNI','61000015J','Olga','Baena','1991-01-11','F','AB+'),
-('DNI','61000016Z','Pedro','Aranda','1984-07-07','M','O-'),
-('DNI','61000017S','Quentin','Ferrer','1969-09-13','M','A+'),
-('DNI','61000018Q','Rebeca','Montes','1995-11-22','F','B+'),
-('DNI','61000019V','Salvador','Gimenez','1980-04-19','M','O+'),
-('DNI','61000020H','Tamara','Velasco','1993-08-08','F','A+'),
-('DNI','61000021L','Urbano','Malo','1977-02-28','M','AB+'),
-('DNI','61000022C','Vanessa','Mena','1996-12-03','F','O-'),
-('DNI','61000023K','Walter','Pizarro','1982-05-16','M','A-'),
-('DNI','61000024E','Ximena','Lagos','2001-09-09','F','B+'),
-('DNI','61000025T','Yolanda','Crespo','1989-03-03','F','O+'),
-('DNI','61000026R','Zaira','Espino','1998-07-14','F','A+'),
-('DNI','61000027W','Arturo','Nieto','1976-10-10','M','AB-'),
-('DNI','61000028A','Blanca','Roldan','1993-04-27','F','O+'),
-('DNI','61000029G','Cesar','Colom','1987-01-15','M','B+'),
-('DNI','61000030M','Dolores','Vela','1979-06-06','F','A+'),
-('DNI','61000031Y','Ernesto','Pascual','1970-11-11','M','O-'),
-('DNI','61000032F','Florencia','Marin','1994-08-23','F','A+'),
-('DNI','61000033P','German','Acosta','1985-02-07','M','AB+'),
-('DNI','61000034D','Hector','Exposito','1991-05-30','M','O+'),
-('DNI','61000035X','Irene','Castano','1983-12-12','F','B-'),
-('DNI','61000036B','Joaquin','Valls','2002-03-18','M','A+'),
-('DNI','61000037N','Karina','Sevilla','1990-09-29','F','O+'),
-('DNI','61000038J','Leandro','Pons','1974-07-07','M','A-'),
-('DNI','61000039Z','Monica','Trillo','1997-01-24','F','B+'),
-('DNI','61000040S','Nicolas','Saura','1986-10-06','M','AB+'),
-('DNI','61000041Q','Ofelia','Bravo','1992-04-13','F','O+'),
-('DNI','61000042V','Pascual','Moya','1968-08-08','M','A+'),
-('DNI','61000043H','Quirina','Luque','1995-06-19','F','O-'),
-('DNI','61000044L','Rodrigo','Andres','1981-03-03','M','B+'),
-('DNI','61000045C','Sandra','Mira','1999-11-11','F','A+'),
-('DNI','61000046K','Tomas','Pla','1972-05-05','M','AB-'),
-('DNI','61000047E','Uxia','Roca','1988-09-09','F','O+'),
-('DNI','61000048T','Vicente','Feliu','1984-12-31','M','A+'),
-('DNI','61000049R','Wendy','Munoz','2000-02-22','F','B+'),
-('DNI','61000050W','Xabier','Otero','1978-07-07','M','O+');
+('DNI','61000001E','ALEJANDRO','VIDAL','1985-03-12','M','A+'),
+('DNI','61000002T','BEATRIZ','SAEZ','1992-07-24','F','O+'),
+('DNI','61000003R','CARLOS','MONTERO','1978-11-05','M','B+'),
+('DNI','61000004W','DIANA','REYES','1990-01-30','F','AB+'),
+('DNI','61000005A','EDUARDO','JIMENEZ','1983-06-18','M','O-'),
+('DNI','61000006G','FATIMA','ALONSO','1997-09-09','F','A-'),
+('DNI','61000007M','GONZALO','PENA','1975-04-04','M','B-'),
+('DNI','61000008Y','HELENA','CANO','1988-12-21','F','A+'),
+('DNI','61000009F','IGNACIO','MERINO','1994-02-14','M','O+'),
+('DNI','61000010P','JULIA','RUBIO','1981-08-08','F','AB-'),
+('DNI','61000011D','KEVIN','IBORRA','2000-05-05','M','A+'),
+('DNI','61000012X','LIDIA','PAREDES','1986-10-17','F','O+'),
+('DNI','61000013B','MARCO','ESTEBAN','1973-03-25','M','B+'),
+('DNI','61000014N','NATALIA','ZAMORA','1999-06-30','F','A-'),
+('DNI','61000015J','OLGA','BAENA','1991-01-11','F','AB+'),
+('DNI','61000016Z','PEDRO','ARANDA','1984-07-07','M','O-'),
+('DNI','61000017S','QUENTIN','FERRER','1969-09-13','M','A+'),
+('DNI','61000018Q','REBECA','MONTES','1995-11-22','F','B+'),
+('DNI','61000019V','SALVADOR','GIMENEZ','1980-04-19','M','O+'),
+('DNI','61000020H','TAMARA','VELASCO','1993-08-08','F','A+'),
+('DNI','61000021L','URBANO','MALO','1977-02-28','M','AB+'),
+('DNI','61000022C','VANESSA','MENA','1996-12-03','F','O-'),
+('DNI','61000023K','WALTER','PIZARRO','1982-05-16','M','A-'),
+('DNI','61000024E','XIMENA','LAGOS','2001-09-09','F','B+'),
+('DNI','61000025T','YOLANDA','CRESPO','1989-03-03','F','O+'),
+('DNI','61000026R','ZAIRA','ESPINO','1998-07-14','F','A+'),
+('DNI','61000027W','ARTURO','NIETO','1976-10-10','M','AB-'),
+('DNI','61000028A','BLANCA','ROLDAN','1993-04-27','F','O+'),
+('DNI','61000029G','CESAR','COLOM','1987-01-15','M','B+'),
+('DNI','61000030M','DOLORES','VELA','1979-06-06','F','A+'),
+('DNI','61000031Y','ERNESTO','PASCUAL','1970-11-11','M','O-'),
+('DNI','61000032F','FLORENCIA','MARIN','1994-08-23','F','A+'),
+('DNI','61000033P','GERMAN','ACOSTA','1985-02-07','M','AB+'),
+('DNI','61000034D','HECTOR','EXPOSITO','1991-05-30','M','O+'),
+('DNI','61000035X','IRENE','CASTANO','1983-12-12','F','B-'),
+('DNI','61000036B','JOAQUIN','VALLS','2002-03-18','M','A+'),
+('DNI','61000037N','KARINA','SEVILLA','1990-09-29','F','O+'),
+('DNI','61000038J','LEANDRO','PONS','1974-07-07','M','A-'),
+('DNI','61000039Z','MONICA','TRILLO','1997-01-24','F','B+'),
+('DNI','61000040S','NICOLAS','SAURA','1986-10-06','M','AB+'),
+('DNI','61000041Q','OFELIA','BRAVO','1992-04-13','F','O+'),
+('DNI','61000042V','PASCUAL','MOYA','1968-08-08','M','A+'),
+('DNI','61000043H','QUIRINA','LUQUE','1995-06-19','F','O-'),
+('DNI','61000044L','RODRIGO','ANDRES','1981-03-03','M','B+'),
+('DNI','61000045C','SANDRA','MIRA','1999-11-11','F','A+'),
+('DNI','61000046K','TOMAS','PLA','1972-05-05','M','AB-'),
+('DNI','61000047E','UXIA','ROCA','1988-09-09','F','O+'),
+('DNI','61000048T','VICENTE','FELIU','1984-12-31','M','A+'),
+('DNI','61000049R','WENDY','MUNOZ','2000-02-22','F','B+'),
+('DNI','61000050W','XABIER','OTERO','1978-07-07','M','O+');
 
 --==========================
 --= CITAS DE carlos.lopez (medical_staff_id=1) con los 50 nuevos pacientes
