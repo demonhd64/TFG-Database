@@ -349,18 +349,44 @@ CREATE TABLE appointments (
 
 CREATE TABLE reports (
     id BIGSERIAL,
-    creation_time TIMESTAMPTZ NOT NULL,
+
+    creation_time TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+
     report_title VARCHAR(100) NOT NULL,
+
     description TEXT NOT NULL,
+
     state VARCHAR(15) NOT NULL,
+
     patient_id BIGINT NOT NULL,
+
     medical_staff_id BIGINT NOT NULL,
+
     report_type_id BIGINT NOT NULL,
+
+    appointment_id BIGINT NULL,
+
     PRIMARY KEY (id),
-    CHECK (state IN ('OPEN', 'CLOSED', 'IN_PROGRESS')),
-    FOREIGN KEY (medical_staff_id) REFERENCES medical_staff (id),
-    FOREIGN KEY (patient_id) REFERENCES patients (id),
-    FOREIGN KEY (report_type_id) REFERENCES report_types (id)
+
+    CHECK (
+        state IN (
+            'OPEN',
+            'CLOSED'
+        )
+    ),
+
+    FOREIGN KEY (medical_staff_id)
+        REFERENCES medical_staff(id),
+
+    FOREIGN KEY (patient_id)
+        REFERENCES patients(id),
+
+    FOREIGN KEY (report_type_id)
+        REFERENCES report_types(id),
+
+    FOREIGN KEY (appointment_id)
+        REFERENCES appointments(id)
+        ON DELETE SET NULL
 );
 
 CREATE TABLE prescriptions (
