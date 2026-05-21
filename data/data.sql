@@ -422,7 +422,7 @@ INSERT INTO rooms (room_number, max_capacity) VALUES
 --= PAGES
 --==========================
 
--- Páginas de empleados
+-- Páginas de todos empleados
 INSERT INTO pages (page_key, page_label, page_url, section, is_active) VALUES
 ('horarios',     'Horario',     '/main/pages/employee/horarios/index.php', 'employee', true),
 
@@ -1240,120 +1240,439 @@ INSERT INTO reports (
     state,
     patient_id,
     medical_staff_id,
-    report_type_id
+    report_type_id,
+    appointment_id
 ) VALUES
 (
     '2026-05-12 12:00:00+02',
     'DOLOR TORÁCICO',
-    'Paciente con dolor torácico leve',
+    'Paciente varón de 58 años que acude a consulta refiriendo dolor torácico de características opresivas, localizado en región retroesternal, de inicio hace aproximadamente 4 horas. El dolor irradia hacia el brazo izquierdo y mandíbula. Refiere además sudoración profusa, náuseas sin vómitos y sensación de mareo. Niega fiebre. Entre sus antecedentes personales destaca hipertensión arterial en tratamiento con enalapril 10 mg/día, dislipemia con estatinas y tabaquismo activo de 30 paquetes/año. A la exploración física presenta tensión arterial de 155/95 mmHg, frecuencia cardíaca de 98 lpm, saturación de oxígeno del 96% basal. Auscultación cardíaca con ritmo regular, sin soplos audibles. Auscultación pulmonar con murmullo vesicular conservado sin crepitantes. El ECG de urgencias muestra elevación del segmento ST en derivaciones V1-V4 compatible con infarto agudo de miocardio anterior. Se realiza analítica urgente con troponina I elevada 2,3 ng/mL (normal < 0,04), CPK-MB 45 U/L. Se activa código infarto y se traslada a hemodinámica de forma urgente para cateterismo. Diagnóstico provisional: SCACEST anterior. Pendiente de resultado de intervencionismo coronario.',
     'OPEN',
     1,
     2,
-    1
+    1,
+    NULL
 ),
 (
     '2026-05-12 13:00:00+02',
     'REVISIÓN TRAUMATOLÓGICA',
-    'Seguimiento de fractura',
-    'IN_PROGRESS',
+    'Paciente mujer de 42 años que acude a revisión programada de fractura de radio distal derecho producida hace 6 semanas por caída casual desde su propia altura. En el momento de la lesión se realizó reducción cerrada bajo anestesia local y se colocó férula braquiopalmar, posteriormente sustituida por yeso circular a las 2 semanas. En la consulta actual refiere leve molestia residual a la movilización, sin dolor en reposo. La exploración muestra edema residual moderado en muñeca, rango de movimiento en flexoextensión limitado al 60% respecto al miembro contralateral, pronosupinación conservada en un 70%. La fuerza de prensión está reducida. Se solicitan radiografías de control que muestran callo óseo en formación con adecuada alineación del fragmento. No se aprecian signos de pseudoartrosis ni de necrosis avascular. Se retira inmovilización y se pauta inicio de rehabilitación con fisioterapia 3 veces por semana durante 8 semanas, con ejercicios de potenciación progresiva y baños de contraste. Se prescribe analgesia con paracetamol 1g cada 8 horas si dolor. Próxima revisión en 6 semanas con nueva radiografía.',
+    'OPEN',
     2,
     4,
-    3
+    3,
+    NULL
 ),
 (
     '2026-05-13 09:00:00+02',
     'CONTROL PEDIÁTRICO',
-    'Revisión rutinaria',
+    'Paciente masculino de 4 años y 2 meses que acude acompañado de su madre para revisión de salud infantil correspondiente a los 4 años según protocolo de seguimiento del niño sano. La madre refiere buen estado general, apetito conservado, sueño regular de unas 10 horas nocturnas sin despertares, desarrollo psicomotor adecuado para su edad: habla en frases complejas, corre, salta en un pie, dibuja figuras reconocibles. Escolarizado desde los 3 años sin incidencias de adaptación. Calendario vacunal al día. A la exploración: peso 17,2 kg (P50), talla 103 cm (P50), perímetro cefálico 51 cm. BEG, bien hidratado y perfundido, normocoloreado. Auscultación cardiopulmonar normal. Abdomen blando, depresible, sin hepatoesplenomegalia. ORL: orofaringe sin hallazgos, timpanogramas normales. Exploración neurológica sin signos de focalidad. Agudeza visual con optotipo de Lea: 0,8 binocular. Test de Denver II dentro de límites normales. Se administran las vacunas correspondientes a los 4 años: DTPa, VPI, MMR, Varicela. Control en 2 años o antes si precisa. Alta.',
     'CLOSED',
     3,
     8,
-    14
+    14,
+    NULL
 ),
 (
     '2026-05-13 10:00:00+02',
     'EVALUACIÓN NEUROLÓGICA',
-    'Paciente con migrañas recurrentes',
+    'Paciente mujer de 34 años derivada desde atención primaria por migrañas recurrentes de más de 2 años de evolución que han empeorado en los últimos 6 meses en frecuencia e intensidad. Refiere cefaleas de localización hemicraneal derecha, de tipo pulsátil, con intensidad 8/10 en la escala EVA, que duran entre 12 y 48 horas. Se acompañan de fotofobia, sonofobia, náuseas y en ocasiones vómitos. En aproximadamente el 30% de los episodios presenta aura visual consistente en escotoma centelleante que precede al dolor unos 20-30 minutos. Actualmente tiene una frecuencia de 8-10 episodios mensuales, lo que la incapacita laboralmente durante varios días. Ha tomado ibuprofeno y triptanes con respuesta parcial. Niega otros síntomas neurológicos: no refiere focalidad motora ni sensitiva, no alteraciones del lenguaje, no pérdidas de consciencia. Exploración neurológica completa dentro de la normalidad. Se solicita RMN cerebral con gadolinio para descartar causa secundaria. Se inicia tratamiento profiláctico con topiramato 25 mg/noche con aumento progresivo hasta 50 mg/noche a las 2 semanas. Se mantiene tratamiento abortivo con sumatriptán 50 mg. Se recomienda llevar diario de cefaleas e identificar factores desencadenantes. Revisión en 3 meses.',
     'OPEN',
     4,
     14,
-    13
+    13,
+    NULL
 ),
 (
     '2026-05-14 11:00:00+02',
     'INGRESO UCI',
-    'Paciente monitorizado',
-    'IN_PROGRESS',
+    'Paciente varón de 71 años ingresado en UCI procedente de urgencias por insuficiencia respiratoria aguda grave en contexto de neumonía bilateral por Streptococcus pneumoniae confirmada microbiológicamente. Antecedentes de EPOC Gold III, diabetes mellitus tipo 2, cardiopatía isquémica crónica con stent en DA en 2021. El paciente precisa ventilación mecánica invasiva desde hace 36 horas. Parámetros ventilatorios actuales: modo SIMV, FiO2 0,55, PEEP 8 cmH2O, Vt 420 ml, FR 18 rpm, con PaO2/FiO2 de 140 compatible con SDRA moderado. Hemodinámicamente precisa noradrenalina a 0,12 mcg/kg/min para mantener PAM > 65 mmHg. Última analítica: leucocitos 22.000 con neutrofilia, PCR 280 mg/L, procalcitonina 18 ng/mL, lactato 2,8 mmol/L, creatinina 1,8 mg/dL (baseline 1,0). Tratamiento antibiótico con ceftriaxona 2g/24h + azitromicina 500mg/24h. Cultivo de esputo positivo a neumococo sensible a penicilina, se ajusta a amoxicilina-clavulánico IV. Sedoanalgesia con propofol y fentanilo. Se mantienen medidas de protección renal, profilaxis de TVP con heparina sódica en perfusión y nutrición enteral a través de SNG a 20 ml/h con objetivo de alcanzar 1.500 kcal/día. Pronóstico reservado.',
+    'OPEN',
     5,
     9,
-    16
+    16,
+    NULL
 ),
 (
     '2026-05-14 12:00:00+02',
     'CONSULTA PSIQUIÁTRICA',
-    'Ansiedad moderada',
+    'Paciente mujer de 28 años que acude a primera consulta de psiquiatría remitida por su médico de atención primaria por cuadro ansioso de 8 meses de evolución. Refiere preocupación excesiva y difícilmente controlable sobre múltiples áreas de su vida (trabajo, salud, relaciones), que asocia a tensión muscular generalizada, inquietud motora, dificultad para concentrarse, irritabilidad y alteración del sueño con insomnio de conciliación y despertar precoz. Estos síntomas le generan un deterioro significativo en su funcionamiento laboral y social. Niega episodios de pánico, fobias específicas, síntomas obsesivo-compulsivos, síntomas disociativos, ideación autolítica o heteroagresiva. No historia previa de episodios depresivos mayores ni síntomas maníacos. No consumo de tóxicos. Antecedentes familiares de trastorno de ansiedad generalizada en madre. Exploración psicopatológica: consciencia y orientación conservadas, atención disminuida, lenguaje coherente y fluido, ánimo eutímico-ansioso, afecto congruente, pensamiento sin alteraciones formales ni del contenido, sin alucinaciones ni ideas de referencia. Diagnóstico: Trastorno de Ansiedad Generalizada (CIE-11: 6B00). Se inicia tratamiento con sertralina 50 mg/día con aumento a 100 mg a las 2 semanas, e hidroxizina 25 mg si ansiedad aguda. Se deriva a psicología clínica para TCC. Revisión en 4 semanas.',
     'OPEN',
     6,
     5,
-    20
+    20,
+    NULL
 ),
 (
     '2026-05-15 09:00:00+02',
     'INFORME DIGESTIVO',
-    'Dolor abdominal persistente',
+    'Paciente varón de 51 años que consulta por dolor abdominal de 3 meses de evolución, localizado en epigastrio e hipocondrio derecho, de tipo cólico, de intensidad moderada (5-6/10 EVA), que se intensifica postprandialmente, especialmente tras ingesta de comidas grasas. Asocia náuseas frecuentes, plenitud epigástrica, flatulencia y cambio en el ritmo deposicional con heces más claras en ocasiones. Niega fiebre, pérdida de peso significativa, hematemesis o rectorragia. Antecedentes: obesidad grado I (IMC 32), dislipemia e hígado graso no alcohólico diagnosticado hace 2 años. No consume alcohol. La exploración abdominal muestra dolor a la palpación en hipocondrio derecho con signo de Murphy positivo. Se realizó ecografía abdominal que evidencia múltiples litiasis en vesícula biliar de hasta 1,2 cm sin engrosamiento de la pared vesicular, con vía biliar no dilatada. Analítica: GGT 78 U/L, FA 120 U/L, bilirrubina total 1,2 mg/dL, resto normal. Diagnóstico: Colelitiasis sintomática. Se explica al paciente el diagnóstico y las opciones terapéuticas. Dada la sintomatología y hallazgos, se deriva a cirugía general para valoración de colecistectomía laparoscópica electiva. Dieta baja en grasas hasta la intervención. Alta con revisión pendiente de fecha quirúrgica.',
     'CLOSED',
     7,
     20,
-    22
+    22,
+    NULL
 ),
 (
     '2026-05-15 10:00:00+02',
     'EVALUACIÓN RESPIRATORIA',
-    'Asma controlada',
+    'Paciente mujer de 23 años con diagnóstico previo de asma bronquial alérgica desde los 12 años, en seguimiento por neumología. Acude a revisión semestral programada. Refiere buena tolerancia al tratamiento actual con propionato de fluticasona 250 mcg + salmeterol 50 mcg en inhalador combinado 1 puff cada 12 horas y salbutamol a demanda. En los últimos 6 meses ha precisado salbutamol de rescate menos de 2 veces por semana, sin despertares nocturnos, sin limitación de actividad física y ha faltado al trabajo solo 1 día. ACQ-5: 0,6 (asma bien controlada). Espirometría forzada: FVC 3,5 L (98% teórico), FEV1 3,1 L (97% teórico), Cociente FEV1/FVC 0,88, sin respuesta significativa al broncodilatador (incremento FEV1 < 12%). Oscilometría con mínimas resistencias de vía aérea. Prick test positivo a ácaros del polvo y gramíneas. IgE total 280 kU/L. Se mantiene el tratamiento actual sin modificaciones. Se refuerzan medidas de evitación de alérgenos: fundas antiácaros, humedad del hogar < 50%, ventilación diaria. Se comenta la posibilidad de inmunoterapia subcutánea que la paciente acepta, iniciando valoración por alergología. Próxima revisión en 6 meses.',
     'OPEN',
     8,
     6,
-    21
+    21,
+    NULL
 ),
-('2026-05-16 12:00:00+02','HIPERTENSIÓN ARTERIAL','Control tensión elevada','OPEN',56,2,12),
-('2026-05-16 13:00:00+02','DOLOR LUMBAR','Paciente con lumbalgia mecánica','IN_PROGRESS',57,4,15),
-('2026-05-16 14:00:00+02','BRONQUITIS AGUDA','Tos persistente y fiebre','OPEN',58,6,21),
-('2026-05-17 09:00:00+02','CONTROL PEDIÁTRICO ANUAL','Revisión general sin incidencias','CLOSED',59,8,14),
-('2026-05-17 10:00:00+02','ANSIEDAD GENERALIZADA','Síntomas moderados de ansiedad','OPEN',60,5,20),
-
-('2026-05-17 11:00:00+02','SEGUIMIENTO ENDOCRINO','Control glucemia y peso','IN_PROGRESS',61,17,24),
-('2026-05-17 12:00:00+02','MIGRAÑA RECURRENTE','Dolor de cabeza frecuente','OPEN',62,14,13),
-('2026-05-18 09:30:00+02','EVALUACIÓN RESPIRATORIA','Disnea leve al esfuerzo','OPEN',63,6,21),
-('2026-05-18 10:30:00+02','FRACTURA DE MUÑECA','Seguimiento post inmovilización','CLOSED',64,4,15),
-('2026-05-18 11:30:00+02','DERMATITIS ALÉRGICA','Lesiones cutáneas leves','OPEN',65,19,26),
-
-('2026-05-18 12:00:00+02','CONTROL CARDIOLÓGICO','Paciente estable','IN_PROGRESS',66,2,12),
-('2026-05-19 09:00:00+02','INFORME UCI','Paciente sedado y monitorizado','OPEN',67,9,16),
-('2026-05-19 10:00:00+02','CONSULTA DIGESTIVA','Dolor abdominal y náuseas','OPEN',68,20,22),
-('2026-05-19 11:00:00+02','EVALUACIÓN PSICOLÓGICA','Estrés laboral severo','IN_PROGRESS',69,29,20),
-('2026-05-19 12:00:00+02','REVISIÓN TRAUMATOLÓGICA','Buena evolución funcional','CLOSED',70,4,15),
-
-('2026-05-20 09:00:00+02','CONTROL NEUMOLÓGICO','Asma persistente leve','OPEN',71,6,21),
-('2026-05-20 10:00:00+02','SEGUIMIENTO ONCOLÓGICO','Paciente estable tras quimioterapia','IN_PROGRESS',72,15,17),
-('2026-05-20 11:00:00+02','CONSULTA PSIQUIÁTRICA','Insomnio y ansiedad','OPEN',73,5,20),
-('2026-05-20 12:00:00+02','REVISIÓN GINECOLÓGICA','Control rutinario anual','CLOSED',74,3,18),
-('2026-05-20 13:00:00+02','INFORME REHABILITACIÓN','Mejora movilidad rodilla','OPEN',75,16,42),
-('2026-06-01 08:45:00+02','CONTROL HIPERTENSIÓN','Paciente estable','OPEN',76,1,2),
-('2026-06-01 09:15:00+02','DOLOR MUSCULAR','Molestia lumbar leve','IN_PROGRESS',77,1,3),
-('2026-06-01 09:45:00+02','CONSULTA GENERAL','Sin incidencias relevantes','CLOSED',78,1,1),
-('2026-06-01 10:15:00+02','SEGUIMIENTO CLÍNICO','Evolución favorable','OPEN',79,1,2),
-('2026-06-01 10:45:00+02','REVISIÓN MÉDICA','Paciente estable','OPEN',80,1,3),
-
-('2026-06-02 08:45:00+02','CONTROL TENSIÓN ARTERIAL','Tensión controlada','CLOSED',81,1,12),
-('2026-06-02 09:15:00+02','DOLOR ABDOMINAL','Síntomas leves','IN_PROGRESS',82,1,22),
-('2026-06-02 09:45:00+02','CONSULTA RESPIRATORIA','Asma leve controlada','OPEN',83,1,21),
-('2026-06-02 10:15:00+02','SEGUIMIENTO CLÍNICO','Mejoría progresiva','OPEN',84,1,2),
-('2026-06-02 10:45:00+02','CONSULTA GENERAL','Control rutinario','CLOSED',85,1,1),
-
-('2026-06-03 08:45:00+02','REVISIÓN MÉDICA','Paciente estable','OPEN',86,1,3),
-('2026-06-03 09:15:00+02','CONTROL DIABETES','Glucemia aceptable','IN_PROGRESS',87,1,24),
-('2026-06-03 09:45:00+02','DOLOR TORÁCICO','Pendiente pruebas','OPEN',88,1,12),
-('2026-06-03 10:15:00+02','CONSULTA GENERAL','Revisión sin incidencias','CLOSED',89,1,1),
-('2026-06-03 10:45:00+02','SEGUIMIENTO CLÍNICO','Buena evolución','OPEN',90,1,2);
+(
+    '2026-05-16 12:00:00+02',
+    'HIPERTENSIÓN ARTERIAL',
+    'Paciente varón de 63 años en seguimiento por hipertensión arterial esencial de 10 años de evolución. Acude a control trimestral. Refiere cumplimiento terapéutico adecuado con amlodipino 10 mg + ramipril 10 mg/día. Realiza automedición domiciliaria y aporta registros de los últimos 30 días: media matutina 148/88 mmHg, media vespertina 145/86 mmHg, cifras por encima del objetivo terapéutico (< 135/85 mmHg en AMPA). Reconoce mayor ingesta de sal en las últimas semanas por eventos sociales y reducción de la actividad física habitual por viaje de trabajo de 3 semanas. No refiere síntomas de afectación de órgano diana: no cefalea, no alteraciones visuales, no disnea, no palpitaciones, no clínica neurológica focal. Exploración: peso 88 kg, IMC 30,2. PA en consulta 152/90 mmHg en brazo derecho y 149/88 mmHg en brazo izquierdo. FC 74 lpm, ritmo sinusal. Auscultación cardiopulmonar normal. No edemas en extremidades inferiores. Fondo de ojo: cruce arteriovenoso patológico sin hemorragias ni exudados. Analítica reciente: creatinina 1,1 mg/dL, potasio 4,2 mEq/L, glucosa 105 mg/dL, microalbuminuria 45 mg/g creatinina (límite alto normal). ECG: hipertrofia ventricular izquierda leve por criterios de voltaje. Se añade al tratamiento hidroclorotiazida 12,5 mg/día. Se insiste en restricción de sodio (< 5 g/día), pérdida de peso y reanudación de actividad física aeróbica 150 min/semana. Revisión en 6 semanas.',
+    'OPEN',
+    56,
+    2,
+    12,
+    16
+),
+(
+    '2026-05-16 13:00:00+02',
+    'DOLOR LUMBAR',
+    'Paciente mujer de 47 años que consulta por lumbalgia de 3 semanas de evolución sin antecedente traumático previo. El dolor se localiza en región lumbar baja bilateral, de características mecánicas: empeora con la bipedestación prolongada y los movimientos de flexión, mejora parcialmente con el reposo y el calor local. Intensidad 6/10 en EVA. Niega irradiación a miembros inferiores, déficit sensitivo-motor, alteración del control de esfínteres o síntomas constitucionales. Trabaja como cajera en supermercado con posturas estáticas prolongadas. Antecedentes: no cirugías previas, no osteoporosis conocida. IMC 27. La exploración física muestra contractura paravertebral bilateral en musculatura lumbar, test de Schöber 15 cm (5 cm de movilidad, límite bajo de la normalidad), maniobra de Lasègue negativa bilateral, exploración neurológica de miembros inferiores conservada. Dado el cuadro clínico sin signos de alarma, no se solicita radiografía en primera instancia. Se pauta tratamiento con ibuprofeno 600 mg/8h con comida durante 7 días, relajante muscular ciclobenzaprina 5 mg/8h durante 5 días, calor local y reposo relativo. Se indica ejercicio de fortalecimiento de musculatura lumbar y core. Se deriva a fisioterapia. Revisión en 3 semanas si no mejoría o ante aparición de signos de alarma.',
+    'OPEN',
+    57,
+    4,
+    15,
+    17
+),
+(
+    '2026-05-16 14:00:00+02',
+    'BRONQUITIS AGUDA',
+    'Paciente varón de 38 años sin antecedentes respiratorios previos de interés que acude por tos persistente de 10 días de evolución, inicialmente seca y posteriormente productiva con expectoración mucosa amarillenta, acompañada de fiebre de hasta 38,5ºC los primeros 4 días (actualmente afebril), malestar general, rinorrea hialina y odinofagia leve. Niega disnea de reposo, hemoptisis, dolor torácico o síntomas digestivos acompañantes. Tratado de forma ambulatoria con paracetamol sin mejoría significativa de la tos. No tabaquismo. No animales en domicilio. No viajes recientes al extranjero. Exploración física: temperatura 37,1ºC, TA 120/75 mmHg, FC 78 lpm, SatO2 98% basal. Auscultación pulmonar: roncus dispersos bilaterales sin sibilancias ni crepitantes. No consolidación. ORL: congestión nasal, orofaringe ligeramente eritematosa sin exudado. Se realiza radiografía de tórax PA que no muestra infiltrados pulmonares ni condensaciones, descartando neumonía. Analítica: leucocitos 10.200 (neutrófilos 68%), PCR 18 mg/L. Diagnóstico: bronquitis aguda de probable etiología vírica. Dado que no hay criterios de antibioterapia (afebril, sin criterios de neumonía), no se prescribe antibiótico. Se indica ambroxol 30 mg/8h como mucolítico, miel y propóleo para alivio sintomático. Revisión si fiebre > 38ºC, disnea o empeoramiento.',
+    'OPEN',
+    58,
+    6,
+    21,
+    18
+),
+(
+    '2026-05-17 09:00:00+02',
+    'CONTROL PEDIÁTRICO ANUAL',
+    'Paciente femenina de 7 años y 8 meses que acude con ambos progenitores para revisión de salud infantil de los 8 años (adelantada por disponibilidad). La madre refiere excelente estado general, buen rendimiento escolar en 2º de primaria con notas sobresalientes en todas las asignaturas, buena integración social con grupo de amigas estable. Come bien con variedad de alimentos aunque con cierta preferencia por dulces que se controla en casa. Duerme 9-10 horas nocturnas sin problemas. Realiza natación 2 veces por semana. Calendario vacunal completo y al día. Exploración: peso 24,5 kg (P50), talla 124 cm (P50-P75), IMC 15,9 (normopeso). BEG, buen estado nutricional, bien hidratada y perfundida. Auscultación cardiopulmonar normal. Abdomen normal. Columna vertebral sin escoliosis ni cifosis. ORL: amígdalas grado II sin signos inflamatorios. Agudeza visual: OD 1,0, OI 1,0, binocular 1,0. Cribado auditivo normal. Exploración genitourinaria normal, estadio Tanner I. Tensión arterial 90/55 mmHg (normal para edad). Hemograma y ferritina en analítica reciente normales. Sin incidencias. Se refuerzan consejos de alimentación saludable, protección solar y uso de casco en bicicleta. Próxima revisión a los 10 años. Alta.',
+    'CLOSED',
+    59,
+    8,
+    14,
+    19
+),
+(
+    '2026-05-17 10:00:00+02',
+    'ANSIEDAD GENERALIZADA',
+    'Paciente varón de 32 años que acude derivado por médico de familia por cuadro de ansiedad de aproximadamente un año de evolución que ha ido en aumento. Refiere preocupación constante e incontrolable por su situación laboral (en proceso de cambio de empresa), económica y su salud en general. Asocia irritabilidad marcada, tensión muscular cervical y lumbar crónica, fatiga diurna persistente, dificultad para concentrarse en el trabajo y alteración severa del sueño con insomnio de conciliación de más de una hora y sueño no reparador. Ha probado valeriana y técnicas de relajación autodidactas con escaso beneficio. Estos síntomas están repercutiendo en su rendimiento profesional y en su relación de pareja. No antecedentes psiquiátricos previos. No consumo de sustancias. No ideación autolítica. Exploración psicopatológica: consciente y orientado, atención fluctuante, humor distiínico-ansioso con tendencia a la preocupación anticipatoria, pensamiento circular sobre los focos de preocupación, sin alteraciones sensoperceptivas. Diagnóstico: Trastorno de Ansiedad Generalizada moderado-grave (CIE-11: 6B00). Se inicia escitalopram 10 mg/día (a aumentar a 20 mg a las 2 semanas según tolerancia). Se añade pregabalina 75 mg/noche para el insomnio y la tensión muscular. Se deriva urgente a psicología clínica para inicio de TCC. Revisión en 3 semanas.',
+    'OPEN',
+    60,
+    5,
+    20,
+    NULL
+),
+(
+    '2026-05-17 11:00:00+02',
+    'SEGUIMIENTO ENDOCRINO',
+    'Paciente mujer de 55 años con diabetes mellitus tipo 2 de 8 años de evolución, obesidad grado II (IMC 36,4) e hipotiroidismo autoinmune (Hashimoto) en tratamiento sustitutivo con levotiroxina 75 mcg/día. Acude a revisión trimestral en consulta de endocrinología. Refiere aceptable adherencia al tratamiento, aunque reconoce dificultades para seguir la dieta hipocalórica durante los fines de semana. Realiza 30 minutos de paseo diario. No hipoglucemias sintomáticas. Autoanálisis de glucemia capilar en ayunas con medias entre 130-160 mg/dL. HbA1c actual: 7,8% (objetivo < 7% por su edad y perfil). Colesterol total 198 mg/dL, LDL 118 mg/dL (objetivo < 100 en DM2), HDL 42 mg/dL, TG 195 mg/dL. Creatinina 0,9 mg/dL, FG 72 ml/min/1,73m2. Microalbuminuria: 95 mg/g (microalbuminuria establecida). TSH 1,8 mU/L (bien controlada). Tensión arterial 135/82 mmHg. Peso: 94 kg (sin cambios respecto a revisión anterior). Exploración de pies: sensibilidad vibratoria reducida en ambos primeros dedos, pulsos pedios presentes y simétricos, sin lesiones cutáneas. Fondo de ojo: retinopatía diabética no proliferativa leve. Se añade dapagliflozina 10 mg/día al tratamiento por su beneficio cardiovascular y renal y para mejora del control glucémico. Se intensifica la metformina a 1g/12h. Se ajusta atorvastatina a 40 mg/día. Derivación a nefrología por microalbuminuria. Próxima revisión en 3 meses con HbA1c.',
+    'OPEN',
+    61,
+    17,
+    24,
+    NULL
+),
+(
+    '2026-05-17 12:00:00+02',
+    'MIGRAÑA RECURRENTE',
+    'Paciente varón de 40 años que acude a consulta de neurología por reevaluación de migraña crónica. Diagnóstico establecido hace 5 años. Actualmente presenta más de 15 días de cefalea al mes, de los cuales al menos 8 cumplen criterios de migraña (ICHD-3): dolor hemicraneal izquierdo, pulsátil, intensidad grave 8-9/10, que dura 24-72 horas sin tratamiento, con náuseas, fotofobia y sonofobia incapacitantes. El paciente ha tomado triptanes más de 10 días al mes durante los últimos 3 meses, por lo que se establece el diagnóstico concomitante de cefalea por uso excesivo de medicación. Tratamiento profiláctico previo: amitriptilina hasta 50 mg (abandonada por efectos anticolinérgicos), valproato (abandonado por ganancia de peso). Tomó topiramato con reducción parcial pero insuficiente. RMN cerebral realizada hace 6 meses: normal. Se decide iniciar tratamiento con anticuerpo monoclonal anti-CGRP: fremanezumab 225 mg subcutáneo mensual (se administra primera dosis en consulta). Se pausa el uso de triptanes con programa de deshabituación gradual durante 4 semanas. Se recomienda llevar diario de cefaleas digital, hidratación adecuada, sueño regular y manejo de estrés. Revisión en 3 meses para valorar respuesta (objetivo: reducción ≥ 50% de días de cefalea).',
+    'OPEN',
+    62,
+    14,
+    13,
+    22
+),
+(
+    '2026-05-18 09:30:00+02',
+    'EVALUACIÓN RESPIRATORIA',
+    'Paciente mujer de 67 años ex-fumadora (abandono hace 10 años, índice paquetes/año 40) con diagnóstico de EPOC moderada (GOLD B) en tratamiento con tiotropio 18 mcg/día en inhalador de polvo seco. Acude por empeoramiento progresivo de su disnea en los últimos 2 meses, pasando de disnea a grandes esfuerzos (mMRC 1) a disnea con esfuerzos moderados como subir un piso de escaleras (mMRC 2). No aumento de expectoración ni cambio de coloración del esputo. No fiebre. No edemas. La exploración muestra tórax en barril, murmullo vesicular globalmente disminuido con espiración alargada, sin sibilancias en reposo. SatO2 en reposo 94%. Espirometría actual: FVC 2,1 L (72% teórico), FEV1 1,2 L (58% teórico), FEV1/FVC 0,57, sin respuesta significativa al broncodilatador (incremento FEV1 7%). Comparado con espirometría de hace 1 año: descenso de FEV1 de 80 ml (deterioro acelerado). Prueba de la marcha de 6 minutos: 340 metros con SatO2 mínima de 88% al esfuerzo. Test CAT: 18 puntos. Se escala tratamiento a doble broncodilatación con umeclidinio/vilanterol 62,5/25 mcg/día. Se solicita TC de alta resolución y gasometría arterial basal. Se pauta oxigenoterapia nocturna domiciliaria con SatO2 < 88% durante el sueño pendiente de verificación con pulsioximetría nocturna. Derivación a programa de rehabilitación pulmonar. Revisión en 6 semanas con resultados.',
+    'OPEN',
+    63,
+    6,
+    21,
+    NULL
+),
+(
+    '2026-05-18 10:30:00+02',
+    'FRACTURA DE MUÑECA',
+    'Paciente varón de 14 años que acude con su padre a revisión final de fractura de radio distal izquierdo tipo Salter-Harris II producida hace 8 semanas al caer durante práctica de skateboard. Fue tratado inicialmente en urgencias con reducción cerrada bajo sedación y colocación de yeso braquiopalmar que se retiró a las 6 semanas. El paciente refiere ausencia completa de dolor desde hace 2 semanas. Ha completado el programa de fisioterapia de 4 semanas pautado. Exploración actual: cicatriz de punción inexistente (fue tratamiento conservador). Rango de movimiento de muñeca: flexión 70º, extensión 65º, desviación radial 20º, desviación cubital 35º, pronosupinación completa 180º. Fuerza de prensión simétrica con miembro contralateral. No dolor a la palpación ni a la movilización. Radiografía de control: consolidación completa, línea de fractura no visible, respeto de la fisis sin puentes óseos, alineación anatómica excelente. Cierre fisario adecuado para su edad. Sin signos de complicaciones. Diagnóstico: fractura consolidada sin secuelas. Se autoriza la práctica deportiva progresiva: natación y ciclismo estático las primeras 2 semanas, regreso al skateboard con protecciones de muñeca a partir de la semana 3. Se recomienda el uso de muñequeras protectoras en deporte de tabla durante al menos 6 meses. Alta definitiva de traumatología. No precisa revisión salvo incidencias.',
+    'CLOSED',
+    64,
+    4,
+    15,
+    NULL
+),
+(
+    '2026-05-18 11:30:00+02',
+    'DERMATITIS ALÉRGICA',
+    'Paciente mujer de 29 años que acude a consulta de dermatología por brote de lesiones cutáneas de 2 semanas de evolución. Refiere aparición progresiva de placas eritematosas, papulosas, con descamación fina y prurito intenso (EVA 7/10) localizadas principalmente en cara interna de codos, cara posterior de rodillas, cuello y muñecas, de forma simétrica bilateral. El prurito empeora por la noche interfiriendo con el sueño. No fiebre ni afectación del estado general. Refiere antecedentes personales de rinitis alérgica estacional (gramíneas y ácaros) y asma leve en infancia. Antecedentes familiares de atopia en madre y hermano. En el momento del brote reconoce haber cambiado de detergente y gel de baño hace 3 semanas. Exploración dermatológica: lesiones eccematosas crónicas con liquenificación en zonas de rascado, signo de Darier negativo, dermografismo positivo. Sin afectación de cuero cabelludo ni de uñas. Patch test positivo a fragancia mix I y II (presente en el nuevo detergente). IgE total 380 kU/L, eosinófilos 680/mcL. SCORAD: 32 (dermatitis atópica moderada). Diagnóstico: dermatitis atópica moderada con componente de dermatitis de contacto alérgica. Se pauta hidrocortisona butirato 0,1% crema 2 veces/día en zonas activas durante 2 semanas, tacrolimus 0,03% en cara y pliegues. Emoliente intensivo 2-3 veces/día. Antihistamínico oral cetirizina 10 mg/noche. Cambio de detergente y productos de higiene sin fragancias. Revisión en 3 semanas.',
+    'OPEN',
+    65,
+    19,
+    26,
+    NULL
+),
+(
+    '2026-05-18 12:00:00+02',
+    'CONTROL CARDIOLÓGICO',
+    'Paciente varón de 68 años con cardiopatía isquémica crónica: infarto agudo de miocardio inferior en 2019 tratado con angioplastia primaria e implantación de stent farmacoactivo en arteria coronaria derecha. Acude a revisión semestral en consulta de cardiología. Refiere buena calidad de vida, capacidad funcional conservada (clase funcional NYHA I), sin angina de esfuerzo ni en reposo, sin disnea, sin palpitaciones ni síncopes. Cumplimiento del tratamiento farmacológico: AAS 100 mg, clopidogrel 75 mg (en pauta de doble antiagregación hasta completar 5 años en 2024, actualmente en monoterapia con AAS), atorvastatina 80 mg, ramipril 5 mg y bisoprolol 5 mg. Control tensional adecuado. Exploración: TA 118/70 mmHg, FC 58 lpm, ritmo sinusal. Auscultación normal. No soplos. Sin ingurgitación yugular. No edemas. ECG: ritmo sinusal, onda Q inferior residual sin cambios respecto a previo. Ecocardiograma reciente (hace 3 meses): FEVI 52% (levemente deprimida), hipocinesia inferior residual, sin valvulopatías significativas, sin derrame pericárdico. Analítica: LDL 58 mg/dL (objetivo < 55 en muy alto riesgo CV), creatinina 1,0 mg/dL, glucosa 98 mg/dL, TSH normal. Se mantiene tratamiento sin cambios dado buen control. Se planifica ergometría en 6 meses para cribado de isquemia silente. Próxima revisión en 6 meses.',
+    'OPEN',
+    66,
+    2,
+    12,
+    NULL
+),
+(
+    '2026-05-19 09:00:00+02',
+    'INFORME UCI',
+    'Paciente mujer de 82 años ingresada en UCI hace 48 horas procedente de planta de medicina interna por deterioro neurológico agudo y fracaso respiratorio secundario a accidente cerebrovascular isquémico extenso de territorio de arteria cerebral media izquierda, confirmado por TC craneal con defecto de perfusión que abarca más del 50% del territorio de la ACM izquierda. No candidata a fibrinólisis ni a trombectomía mecánica por ventana terapéutica superada (tiempo de evolución > 24 horas) y edad avanzada con alta dependencia funcional previa (Índice de Barthel previo: 45/100 por artrosis grave). Situación clínica actual: glasgow coma scale 7 (apertura ocular 2, respuesta verbal 1, respuesta motora 4), precisa intubación orotraqueal con ventilación mecánica en modo BIPAP, FiO2 0,35, PEEP 5. Hemodinámicamente estable sin soporte vasopresor. TA 145/85 mmHg, FC 88 lpm. Analítica: Na 148 mEq/L (hipernatremia leve en corrección), glucosa 148 mg/dL, creatinina 1,4 mg/dL, PCR 68 mg/L. Se mantiene antiagregación con AAS 100 mg por SNG, estatina de alta intensidad, hidratación IV con SSF 0,45% para corrección de hipernatremia. Posicionamiento a 30º, profilaxis de TVP con HBPM, protección gástrica con omeprazol IV, nutrición enteral por SNG. Reunión con familiares realizada hoy: se explica gravedad y pronóstico muy reservado. Familia solicita limitación de esfuerzo terapéutico en caso de nueva complicación grave. Se registra en historia.',
+    'OPEN',
+    67,
+    9,
+    16,
+    NULL
+),
+(
+    '2026-05-19 10:00:00+02',
+    'CONSULTA DIGESTIVA',
+    'Paciente varón de 44 años que acude a consulta de gastroenterología por dolor abdominal de 2 meses de evolución y náuseas frecuentes. El dolor es epigástrico, de tipo urente, de intensidad moderada (5/10 EVA), que aparece 1-2 horas después de las comidas y en ayunas, mejora parcialmente con antiácidos. Asocia pirosis frecuente, regurgitaciones ácidas y sensación de plenitud postprandial. Niega disfagia, odinofagia, pérdida de peso, hematemesis, melenas o rectorragia. Consumo de café 4 tazas/día, fumador de 10 cig/día, AINE ocasional para cefaleas. Antecedentes sin interés. Exploración: abdomen blando, depresible, dolor a la palpación en epigastrio sin defensa ni rebote. No visceromegalias. Ruidos peristálticos normales. Analítica: hemograma normal (Hb 14,5 g/dL), ferritina 35 ng/mL. Se realiza test de aliento para H. pylori (UBT): POSITIVO. Se solicita gastroscopia urgente preferente dado el dolor persistente y el antecedente de AINE. Pendiente de resultado endoscópico, se inicia tratamiento erradicador cuádruple con bismuto (omeprazol 20mg + bismuto subcitrato 120mg + metronidazol 500mg + tetraciclina 500mg) 4 veces al día durante 10 días. Se indica supresión de AINE, reducción de café y tabaco. Revisión tras completar tratamiento y test de control de erradicación a las 4 semanas.',
+    'OPEN',
+    68,
+    20,
+    22,
+    NULL
+),
+(
+    '2026-05-19 11:00:00+02',
+    'EVALUACIÓN PSICOLÓGICA',
+    'Paciente varón de 39 años que acude derivado por psiquiatría para evaluación psicológica por estrés laboral severo e inicio de psicoterapia. Trabaja como director de proyectos en empresa tecnológica con alta exigencia, teletrabajo sin límites horarios (refiere trabajar regularmente 10-12 horas/día, incluidos fines de semana), sensación crónica de sobrecarga, irritabilidad, incapacidad para desconectar y síntomas de burnout establecido. Evaluación mediante escalas validadas: PSS-14 (Escala de Estrés Percibido) puntuación 38/56 (estrés elevado), MBI subescala de agotamiento emocional 42 (nivel crítico), despersonalización 18, realización personal 22 (reducida). PHQ-9: 11 puntos (depresión moderada). Estado psicopatológico: ánimo distimico con anhedonia parcial, pensamiento rumiativo sobre el trabajo, dificultad para disfrutar tiempo libre, alteración del sueño con despertar a las 4-5 AM pensando en el trabajo. No ideación autolítica activa aunque refiere sentir que estaría mejor "desapareciendo". Niega síntomas psicóticos. Se plantea plan de psicoterapia cognitivo-conductual enfocada en: reestructuración cognitiva de creencias sobre el trabajo y el rendimiento, entrenamiento en habilidades de gestión del tiempo y límites, técnicas de mindfulness y activación conductual. Se pactan 16 sesiones quincenales inicialmente. Se comunica a psiquiatría la presencia de ideación de desaparición para valoración de medicación antidepresiva. Próxima sesión en 2 semanas.',
+    'OPEN',
+    69,
+    29,
+    20,
+    NULL
+),
+(
+    '2026-05-19 12:00:00+02',
+    'REVISIÓN TRAUMATOLÓGICA',
+    'Paciente mujer de 26 años deportista amateur (running y crossfit) que acude a revisión final tras rotura parcial del ligamento cruzado anterior (LCA) de rodilla derecha grado II, diagnosticada hace 4 meses durante competición de crossfit al realizar un salto con torsión de rodilla. Fue tratada de forma conservadora (no se indicó cirugía dado que era una lesión parcial sin inestabilidad funcional significativa) con inmovilización parcial 3 semanas, fisioterapia intensiva 3 sesiones/semana durante 12 semanas, programa propioceptivo y de fortalecimiento de cuádriceps e isquiotibiales. Acude hoy con informe de fisioterapia que documenta recuperación completa. Exploración actual: sin edema ni derrame articular, rango de movimiento completo 0-140º sin dolor, maniobra de Lachman negativa, cajón anterior negativo, pivot shift negativo, stress en varo/valgo negativo. Test de fuerza isocinética: cuádriceps 95% del miembro contralateral, isquiotibiales 92%. Prueba de salto monopodal (LSI): 94%. La paciente refiere sentirse al 100%, sin sensación de inestabilidad al correr o saltar. Se autoriza retorno progresivo al deporte: running sin cambios de dirección semanas 1-2, entrenamiento de crossfit sin saltos ni pivotes semanas 3-4, retorno pleno semanas 5-6 con protección propioceptiva. Se recomienda uso de rodillera funcional durante 6 meses en competición. Alta definitiva. No precisa revisión salvo nueva lesión.',
+    'CLOSED',
+    70,
+    4,
+    15,
+    NULL
+),
+(
+    '2026-05-20 09:00:00+02',
+    'CONTROL NEUMOLÓGICO',
+    'Paciente varón de 52 años con asma persistente leve-moderada (según clasificación GINA) diagnosticada hace 12 años, en seguimiento semestral por neumología. Acude a revisión programada. Refiere en los últimos 6 meses agravamiento de la sintomatología durante la época de polinización (abril-mayo) con mayor frecuencia de síntomas diurnos (3-4 días/semana), algún despertar nocturno mensual y uso de salbutamol de rescate 3-4 veces/semana durante los meses de primavera, volviendo a un control adecuado en verano y otoño. ACQ-5 actual: 1,4 (control parcial). Tratamiento habitual: budesonida/formoterol 160/4,5 mcg, 2 inhalaciones cada 12 horas. Espirometría actual: FVC 4,1 L (95% teórico), FEV1 3,1 L (87% teórico), FEV1/FVC 0,75, prueba broncodilatadora positiva (incremento FEV1 del 15%, 480 ml). FeNO (óxido nítrico exhalado): 38 ppb (elevado, sugiere inflamación eosinofílica activa). Prick test positivo a pólenes de gramíneas +++, olivo ++, ácaros +. IgE total 520 kU/L. Se escala tratamiento a Step 4 GINA: se aumenta dosis de CI a budesonida/formoterol 320/9 mcg 2 inhalaciones/12h en los meses de primavera. Se valora adición de montelukast 10 mg/noche durante temporada de polinización. Se remite a alergología para valoración de inmunoterapia específica con extracto de gramíneas. Próxima revisión en 4 meses.',
+    'OPEN',
+    71,
+    6,
+    21,
+    NULL
+),
+(
+    '2026-05-20 10:00:00+02',
+    'SEGUIMIENTO ONCOLÓGICO',
+    'Paciente mujer de 48 años con diagnóstico de carcinoma de mama luminal B HER2 negativo, estadio IIB (T2N1M0), tratada con quimioterapia neoadyuvante (esquema AC x4 seguido de paclitaxel x12) completada hace 6 meses, cirugía conservadora (tumorectomía + linfadenectomía axilar) con respuesta patológica parcial (ypT1bN0), y radioterapia adyuvante (50 Gy en 25 fracciones) finalizada hace 2 meses. Actualmente en tratamiento hormonal adyuvante con tamoxifeno 20 mg/día (mes 2 de 10 años previstos). Acude a control oncológico trimestral. Refiere buena tolerancia general al tamoxifeno con sofocos moderados (3-4/día, EVA 4/10) y ligera sequedad vaginal. Niega sangrado vaginal anormal. No dolor óseo ni síntomas sugestivos de metástasis. Exploración física: cicatriz de tumorectomía bien curada sin induración, zona de linfadenectomía sin signos de linfedema. Analítica: marcadores tumorales CA 15-3 8 U/mL (normal < 30), CEA 2,1 ng/mL (normal). Hemograma, función hepática y renal sin alteraciones. Se solicita mamografía bilateral y ecografía axilar de control. Ecografía ginecológica por tamoxifeno: endometrio 5 mm (normal). Se añade al tratamiento venlafaxina 37,5 mg/día para control de sofocos. Se recomienda ejercicio aeróbico 150 min/semana y control de peso. Próxima revisión en 3 meses con resultado de imagen.',
+    'OPEN',
+    72,
+    15,
+    17,
+    NULL
+),
+(
+    '2026-05-20 11:00:00+02',
+    'CONSULTA PSIQUIÁTRICA',
+    'Paciente varón de 35 años que acude a segunda consulta de psiquiatría por trastorno de insomnio crónico e ideación ansiosa. Primera consulta hace 6 semanas donde se inició zolpidem 5 mg/noche y se recomendó higiene del sueño. Refiere mejoría inicial las primeras 3 semanas con el zolpidem pero efecto decreciente en las últimas 2 semanas. Actualmente tarda más de 90 minutos en dormirse, se despierta 2-3 veces por noche y amanecer precoz a las 5 AM con dificultad para volver a dormir. Sueño total estimado: 4-5 horas/noche. Asocia ansiedad anticipatoria sobre el momento de acostarse, rituales de verificación del teléfono antes de dormir y uso de pantallas hasta las 00:30. Esto genera fatiga diurna severa, dificultad de concentración y deterioro laboral. PHQ-9: 7 (síntomas depresivos leves). GAD-7: 12 (ansiedad moderada). Diagnóstico: insomnio crónico primario con componente conductual y ansiedad comórbida. Se decide suspender el zolpidem de forma progresiva para evitar dependencia. Se inicia tratamiento con terapia cognitivo-conductual para el insomnio (TCC-I) en formato estructurado de 8 sesiones (entregado manual de restricción de sueño y control de estímulos). Se añade mirtazapina 7,5 mg/noche por su efecto sedante y acción ansiolítica. Se insiste en restricción de pantallas 2 horas antes del sueño, temperatura del dormitorio 18-19ºC, hora fija de levantarse independientemente del descanso. Revisión en 4 semanas.',
+    'OPEN',
+    73,
+    5,
+    20,
+    NULL
+),
+(
+    '2026-05-20 12:00:00+02',
+    'REVISIÓN GINECOLÓGICA',
+    'Paciente mujer de 38 años que acude a revisión ginecológica anual de control rutinario. Sin motivo de consulta específico. Refiere ciclos menstruales regulares de 28 días, duración 4-5 días, flujo moderado sin dismenorrea significativa (EVA 2/10). Anticoncepción con DIU de cobre colocado hace 3 años en seguimiento habitual. Niega dispareunia, flujo vaginal anormal, sangrado intermenstrual, síntomas urinarios o digestivos de nueva aparición. G1P1 (parto vaginal eutócico en 2019, sin complicaciones). Última revisión hace 12 meses sin incidencias. Exploración ginecológica: genitales externos normales. Espéculo: vagina con mucosa normal, cérvix de aspecto normal, sin lesiones visibles, hilos del DIU visibles y en posición correcta. Tacto bimanual: útero anteverso de tamaño normal, no doloroso, anejos no palpables. Ecografía transvaginal: útero en AVF de 68x45x40 mm con endometrio trilaminar de 8 mm (fase proliferativa), DIU en cavidad con buena posición, ovarios de aspecto normal con folículo dominante en ovario izquierdo de 14 mm. Sin imágenes sugestivas de patología. Citología cervical (Papanicolaou + VPH): NILM (negativo para lesión intraepitelial o malignidad), VPH negativo. Exploración mamaria: mamas de textura normal, sin nódulos palpables, sin secreción por pezón. Se solicita mamografía de inicio a los 40 años (en 2 años). Alta. Próxima revisión en 1 año.',
+    'CLOSED',
+    74,
+    3,
+    18,
+    NULL
+),
+(
+    '2026-05-20 13:00:00+02',
+    'INFORME REHABILITACIÓN',
+    'Paciente varón de 55 años en seguimiento por el servicio de rehabilitación por gonartrosis medial de rodilla derecha grave (Kellgren-Lawrence grado III) con lista de espera para prótesis total de rodilla. Pendiente de intervención quirúrgica, se mantiene en programa de rehabilitación conservadora para optimizar la función y controlar el dolor preoperatorio. En la revisión actual refiere mejora subjetiva significativa respecto al inicio del programa hace 3 meses: el dolor en reposo ha disminuido de 6/10 a 3/10 en EVA, el dolor al caminar de 8/10 a 5/10. Puede realizar 800 metros de marcha continua (vs 300 metros iniciales). Exploración: balance articular de rodilla derecha 0-95º de flexión (mejoría de 20º respecto al inicio), extensión completa. Atrofia de cuádriceps reducida respecto al inicio (perímetro del muslo derecho 44 cm vs 41 cm al inicio). Derrame articular leve-moderado. Test cronometrado de levantarse y andar: 14 segundos (vs 19 segundos al inicio, umbral de riesgo de caída > 20 segundos). KOOS (puntuación de resultado de rodilla): dolor 52, síntomas 61, AVD 58, deporte 25, calidad de vida 38 (mejoría en todas las subescalas). Se continúa el programa de rehabilitación con énfasis en potenciación de cuádriceps con electroestimulación, ejercicios en cadena cinética cerrada, hidroterapia 2 veces/semana y uso de bastón contralateral para descarga. Se mantiene visita con cirugía para valoración del momento óptimo quirúrgico. Próxima revisión de rehabilitación en 6 semanas.',
+    'OPEN',
+    75,
+    16,
+    42,
+    NULL
+),
+(
+    '2026-06-01 08:45:00+02',
+    'CONTROL HIPERTENSIÓN',
+    'Paciente varón de 59 años con hipertensión arterial esencial de 14 años de evolución, dislipemia e historia familiar de cardiopatía isquémica prematura (padre: IAM a los 54 años). Acude a control mensual tras ajuste de tratamiento realizado en la última visita. Aporta registros de AMPA de los últimos 30 días: media global 132/80 mmHg, con algunas lecturas matutinas que alcanzan 145/88 mmHg (fenómeno de alerta matutina). El paciente refiere buena tolerancia al tratamiento con olmesartán 40 mg + amlodipino 10 mg + indapamida 1,5 mg (triple terapia). Reconoce cumplimiento del 90% de las tomas (olvida fines de semana con frecuencia). Refiere mareo ocasional al levantarse, sin caídas. No síntomas de hipotensión ortostática. Exploración: peso 81 kg (descenso de 2 kg respecto a último control), TA en consulta 136/82 mmHg decúbito, 128/78 mmHg en bipedestación (sin hipotensión ortostática significativa). FC 68 lpm. Analítica: Na 140 mEq/L, K 4,0 mEq/L, creatinina 1,2 mg/dL, ácido úrico 6,8 mg/dL, glucosa 102 mg/dL, LDL 82 mg/dL. ECG: sin cambios. Se mantiene tratamiento actual que muestra eficacia adecuada. Se felicita al paciente por la pérdida de peso. Se refuerza adherencia mediante pastillero semanal. Revisión en 2 meses.',
+    'OPEN',
+    76,
+    1,
+    2,
+    36
+),
+(
+    '2026-06-01 09:15:00+02',
+    'DOLOR MUSCULAR',
+    'Paciente mujer de 43 años sin antecedentes médicos de interés que consulta por dolor en musculatura lumbar y glútea bilateral de 3 semanas de evolución. El dolor comenzó de forma insidiosa sin desencadenante traumático claro, aunque la paciente lo relaciona con el inicio de teletrabajo hace 2 meses con escritorio improvisado en comedor con silla no ergonómica. El dolor es constante durante la jornada laboral, de intensidad 4-5/10 EVA, que mejora claramente con el movimiento, el ejercicio suave y empeora con la sedestación prolongada. Refiere también tensión en musculatura cervical y trapecio bilateral. Niega irradiación a extremidades inferiores, parestesias, déficit motor o alteración esfinteriana. Exploración: postura en hiperlordosis lumbar, contractura paravertebral bilateral L3-L5 y musculatura glútea media bilateral a la palpación. Maniobra de Lasègue negativa bilateralmente. Exploración neurológica normal. Valorada la situación ergonómica: se recomienda mesa a altura de codos, monitor a altura de ojos, silla con soporte lumbar, pausas activas cada 45 minutos. Se pauta naproxeno 550 mg/12h con omeprazol durante 7 días, relajante muscular metocarbamol 1,5 g/8h 5 días. Se deriva a fisioterapia para trabajo postural y técnicas de terapia manual. Recomendación de caminata 30 minutos/día. Revisión en 3 semanas o antes si empeoramiento.',
+    'OPEN',
+    77,
+    1,
+    3,
+    37
+),
+(
+    '2026-06-01 09:45:00+02',
+    'CONSULTA GENERAL',
+    'Paciente varón de 72 años que acude a consulta de medicina general para revisión anual de su estado de salud. Antecedentes: hipertensión arterial bien controlada con enalapril 20 mg/día, hipotiroidismo primario con levotiroxina 100 mcg/día. No fumador. No bebedor. Jubilado. Refiere buen estado general subjetivo. No síntomas cardiovasculares, respiratorios, digestivos, neurológicos ni urológicos relevantes. Ligera poliuria nocturna (1-2 veces/noche) que atribuye a la edad. Exploración física: TA 124/76 mmHg, FC 62 lpm, peso 74 kg, IMC 26,2. Auscultación cardiopulmonar normal. Abdomen normal. Extremidades sin edemas ni varices. Tacto rectal: próstata de tamaño normal (grado I), superficie lisa, consistencia adenomatosa, no nódulos sospechosos. Analítica de control: hemograma normal, glucosa 98 mg/dL, creatinina 1,0 mg/dL, FG 68 ml/min, Na y K normales, TSH 1,9 mU/L (buen control), PSA 1,8 ng/mL (normal). Colesterol total 175 mg/dL, LDL 95 mg/dL, HDL 52 mg/dL. Orina: sin alteraciones. Se mantiene tratamiento sin cambios. Se recomienda cribado de cáncer colorrectal con test de sangre oculta en heces. Vacunación antigripal al día. Revisión anual en 12 meses o antes si síntomas.',
+    'CLOSED',
+    78,
+    1,
+    1,
+    38
+),
+(
+    '2026-06-01 10:15:00+02',
+    'SEGUIMIENTO CLÍNICO',
+    'Paciente mujer de 65 años con insuficiencia cardíaca con fracción de eyección reducida (ICFEr, FEVI 35%) secundaria a cardiopatía dilatada idiopática, diagnosticada hace 3 años. Tratamiento optimizado: carvedilol 25 mg/12h, sacubitrilo/valsartán 97/103 mg/12h, eplerenona 25 mg/día, dapagliflozina 10 mg/día, furosemida 40 mg/día. Acude a revisión mensual en consulta de insuficiencia cardíaca. En el último mes ha pesado diariamente con báscula en domicilio: registra un aumento de 2,2 kg en los últimos 3 días acompañado de disnea de esfuerzo que ha empeorado de clase funcional II a III y aparición de edemas bimaleolares a partir del mediodía. La paciente actuó correctamente según el plan de acción: aumentó la furosemida a 60 mg/día hace 2 días sin mejoría suficiente. Exploración: TA 100/65 mmHg, FC 78 lpm, SatO2 93% basal. PVY elevada a 45º. Crepitantes bibasales hasta 1/3 medio. Edemas en MMII hasta rodillas con fóvea +++. NT-proBNP: 4.850 pg/mL (previo hace 3 meses: 1.200 pg/mL). Creatinina 1,5 mg/dL (previo 1,1). Na 136 mEq/L. Se decide ingreso hospitalario para descongestión IV con furosemida en perfusión continua a 10 mg/h, monitorización estricta, restricción hídrica 1.500 mL/día. Se contacta con cardiología para reevaluación y posible ajuste de dispositivos.',
+    'OPEN',
+    79,
+    1,
+    2,
+    39
+),
+(
+    '2026-06-01 10:45:00+02',
+    'REVISIÓN MÉDICA',
+    'Paciente varón de 50 años con diabetes mellitus tipo 2 de reciente diagnóstico (hace 6 meses), detectada en analítica rutinaria con glucosa basal 148 mg/dL y HbA1c 7,2% en ese momento. Se inició tratamiento con metformina 850 mg/12h y cambios en el estilo de vida (dieta mediterránea hipocalórica reducida en hidratos de carbono refinados y ejercicio aeróbico 150 min/semana). Acude a revisión de seguimiento a los 6 meses. Refiere excelente adherencia al tratamiento y cambios en el estilo de vida: ha perdido 7 kg (de 92 a 85 kg, IMC actual 28,4), camina 45 minutos diarios y ha modificado su dieta eliminando azúcares simples y bebidas azucaradas. No hipoglucemias. Autoanálisis de glucemia capilar en ayunas: 100-115 mg/dL habitualmente. HbA1c actual: 6,4% (objetivo conseguido < 7%). LDL 102 mg/dL, HDL 46 mg/dL, TG 140 mg/dL. Creatinina 0,9 mg/dL, FG 88 ml/min. Microalbuminuria: negativa. TA 128/80 mmHg. Exploración: sin hallazgos relevantes. Fondo de ojo: normal, sin retinopatía. El paciente muestra excelente evolución. Se mantiene metformina 850 mg/12h. Se felicita y motiva al paciente por la evolución. Se refuerza la importancia de mantener los hábitos adquiridos a largo plazo. Próxima revisión en 6 meses con HbA1c y analítica completa.',
+    'OPEN',
+    80,
+    1,
+    3,
+    40
+),
+(
+    '2026-06-02 08:45:00+02',
+    'CONTROL TENSIÓN ARTERIAL',
+    'Paciente mujer de 61 años con hipertensión arterial de 18 años de evolución, hiperlipemia mixta y antecedente de AIT (accidente isquémico transitorio) hace 4 años. Tratamiento actual: amlodipino 10 mg + perindopril 8 mg + rosuvastatina 20 mg + AAS 100 mg. Acude a control trimestral postajuste. AMPA de los últimos 30 días: media 128/76 mmHg, registros muy estables. Refiere buena tolerancia al tratamiento, sin edemas en tobillos (motivo previo de cambio de amlodipino a dosis reducida), sin tos con el IECA, sin mialgias con la estatina. Se mantiene asintomática. Exploración: TA 130/78 mmHg, FC 64 lpm. Exploración neurológica: sin signos de focalidad. Fondo de ojo: arterias con leve aumento del calibre, sin hemorragias ni exudados, sin edema de papila. Analítica: creatinina 0,95 mg/dL, K 4,3 mEq/L, glucosa 94 mg/dL, LDL 72 mg/dL (objetivo < 70 en muy alto riesgo CV, casi en objetivo), CPK 98 U/L. Microalbuminuria: 18 mg/g (normal). Dado el excelente control actual y el antecedente de AIT, se plantea escalar rosuvastatina a 40 mg para alcanzar objetivo LDL < 70. Se mantiene resto de tratamiento. RMN cerebral de control en 6 meses prevista. Alta de control. Revisión en 3 meses.',
+    'CLOSED',
+    81,
+    1,
+    12,
+    41
+),
+(
+    '2026-06-02 09:15:00+02',
+    'DOLOR ABDOMINAL',
+    'Paciente varón de 29 años que acude a urgencias por dolor abdominal de inicio brusco hace 6 horas, localizado inicialmente en epigastrio y región periumbilical, que en las últimas 2 horas ha migrado y se ha focalizado en fosa ilíaca derecha. El dolor es continuo, de intensidad 7/10 en EVA, que se exacerba con el movimiento y los baches al venir en coche. Asocia náuseas con un vómito alimentario, fiebre de 38,2ºC y anorexia desde esta mañana. Niega diarrea, disuria o síntomas respiratorios. Sin antecedentes médicos ni quirúrgicos relevantes. No toma medicación habitual. Exploración: febril 38,2ºC, TA 122/78 mmHg, FC 98 lpm. Abdomen con defensa voluntaria en FID, signo de Blumberg positivo, signo de Rovsing positivo, signo del psoas positivo. McBurney claramente doloroso. Peristaltismo disminuido. Analítica urgente: leucocitos 16.400 (neutrófilos 88%), PCR 68 mg/L, creatinina 0,9 mg/dL. Prueba de embarazo negativa (no aplicable, varón). Ecografía abdominal: apéndice visible de 10 mm de diámetro, con líquido periapendicular, sin apendicolito. Score de Alvarado: 9/10. Diagnóstico: apendicitis aguda, probable fase flemonosa. Se decide intervención quirúrgica urgente. Se solicita consentimiento informado. Ayunas, sueroterapia IV, antibioterapia profiláctica con cefazolina 2 g IV. Avisar a cirugía de guardia para apendicectomía laparoscópica urgente.',
+    'OPEN',
+    82,
+    1,
+    22,
+    42
+),
+(
+    '2026-06-02 09:45:00+02',
+    'CONSULTA RESPIRATORIA',
+    'Paciente mujer de 31 años con asma alérgica leve persistente diagnosticada hace 8 años, en control semestral por neumología. Refiere buen control en los últimos 6 meses con el tratamiento actual (budesonida 200 mcg/día en inhalador de polvo seco). Ha precisado salbutamol de rescate menos de 2 días/semana. No despertares nocturnos por asma. No limitación de actividad física (practica yoga y pilates 3 veces/semana sin síntomas). No ha faltado al trabajo por su enfermedad en el último año. ACQ-5: 0,4 (asma bien controlada). Exploración: SatO2 99% basal, auscultación pulmonar limpia sin sibilancias ni crepitantes. Espirometría actual: FVC 3,4 L (98% teórico), FEV1 3,0 L (102% teórico), FEV1/FVC 0,88. Prueba broncodilatadora negativa. FeNO: 18 ppb (normal < 25). Prick test positivo a ácaros +++ (realizado hace 3 años). Ha completado los 3 años de inmunoterapia subcutánea con extracto de ácaros, con excelente respuesta (refiere eliminación de la rinitis y marcada mejoría del asma). Dado el excelente control mantenido durante más de 12 meses, se plantea step-down terapéutico: reducir budesonida a 100 mcg/día durante 3 meses y reevaluar. Se mantiene salbutamol de rescate. Revisión en 3 meses con nueva espirometría.',
+    'OPEN',
+    83,
+    1,
+    21,
+    43
+),
+(
+    '2026-06-02 10:15:00+02',
+    'SEGUIMIENTO CLÍNICO',
+    'Paciente varón de 77 años pluripatológico (fibrilación auricular permanente, insuficiencia cardíaca con FE preservada FEVI 55%, EPOC moderado, diabetes mellitus tipo 2, artrosis poliarticular) en seguimiento por medicina interna. Acude acompañado de su hija a revisión bimensual de control multipatológico. Refiere mejoría progresiva respecto a la última visita hace 2 meses donde consultó por descompensación de IC con edemas. Los edemas han desaparecido completamente con el ajuste de furosemida. Disnea estable en clase funcional NYHA II (disnea con esfuerzos moderados). Buen control glucémico refiere con autoanálisis. No episodios de hipoglucemia. La hija refiere buen estado general domiciliario, come bien, sale a pasear 20 minutos al día con andador. Exploración: TA 118/68 mmHg, FC 82 lpm (FA controlada), SatO2 94% basal. Sin ingurgitación yugular. Auscultación: tonos irregulares sin soplos, murmullo vesicular disminuido sin crepitantes. Sin edemas en MMII. Analítica: K 4,1 mEq/L, creatinina 1,4 mg/dL (basal), glucosa 118 mg/dL, HbA1c 6,9%, INR 2,4 (rango terapéutico 2-3 con acenocumarol). NT-proBNP 890 pg/mL (mejoría respecto a 1.850 en la visita anterior). ECG: FA con respuesta ventricular controlada. Se mantiene tratamiento sin cambios. Revisión en 2 meses.',
+    'OPEN',
+    84,
+    1,
+    2,
+    44
+),
+(
+    '2026-06-02 10:45:00+02',
+    'CONSULTA GENERAL',
+    'Paciente mujer de 45 años que acude a consulta de revisión programada anual. Sin antecedentes médicos de interés. No fumadora, consumo de alcohol social ocasional. Trabaja como profesora de secundaria. Refiere cansancio moderado en los últimos meses que atribuye a la carga laboral del final del curso escolar. No pérdida de peso. No síntomas cardiovasculares, respiratorios ni digestivos. Menstruaciones regulares, sin alteraciones. Último control ginecológico hace 8 meses sin incidencias. Exploración: TA 118/74 mmHg, FC 72 lpm, peso 62 kg, talla 165 cm, IMC 22,8. Auscultación cardiopulmonar normal. Abdomen normal. Palpación tiroidea: glándula de tamaño normal, sin nódulos palpables. Piel y mucosas normales. Analítica: hemograma normal (Hb 11,8 g/dL con VCM 78 fl, sugiere ferropenia leve), glucosa 88 mg/dL, función renal y hepática normales, TSH 2,1 mU/L, ferritina 14 ng/mL (baja), vitamina D 18 ng/mL (insuficiencia). Colesterol total 195 mg/dL, LDL 118 mg/dL, HDL 65 mg/dL, TG 60 mg/dL. Se pauta sulfato ferroso 325 mg/día con vitamina C durante 3 meses. Vitamina D 2.000 UI/día de mantenimiento. Se recomienda dieta rica en hierro (legumbres, carnes rojas, vegetales de hoja verde). Revisión analítica en 3 meses. Próximo control anual en 12 meses.',
+    'CLOSED',
+    85,
+    1,
+    1,
+    45
+),
+(
+    '2026-06-03 08:45:00+02',
+    'REVISIÓN MÉDICA',
+    'Paciente varón de 54 años con artritis reumatoide seropositiva (FR y anti-CCP positivos) de 7 años de evolución, en seguimiento por reumatología con control estrecho. Tratamiento actual con metotrexato 20 mg/semana + ácido fólico 5 mg/semana (día siguiente) + adalimumab 40 mg subcutáneo cada 2 semanas. Acude a revisión trimestral de actividad de la enfermedad. Refiere en los últimos 3 meses buena tolerancia al tratamiento, sin infecciones intercurrentes, sin síntomas gastrointestinales con el metotrexato. La rigidez matutina ha descendido de 60 a 15 minutos. No articulaciones calientes ni tumefactas activas esta semana. Escala DAS28-PCR: 2,4 (remisión clínica, objetivo < 2,6). HAQ-DI: 0,5 (discapacidad mínima). Exploración articular: sin sinovitis activa objetivable. Fuerza de prensión bilateral conservada. Sin nódulos reumatoides. Analítica: hemograma normal, transaminasas AST 22, ALT 28 U/L (normales con MTX), creatinina 0,9, PCR 4 mg/L (normal), VSG 18 mm/h. RX manos recientes: sin progresión erosiva respecto a RX de hace 1 año. Mantoux negativo (control anual con adalimumab). Dado el estado de remisión mantenido más de 12 meses, se valora espaciar adalimumab a cada 3 semanas como prueba de reducción de dosis. Se mantiene metotrexato sin cambios. Revisión en 3 meses.',
+    'OPEN',
+    86,
+    1,
+    3,
+    46
+),
+(
+    '2026-06-03 09:15:00+02',
+    'CONTROL DIABETES',
+    'Paciente mujer de 66 años con diabetes mellitus tipo 2 de 15 años de evolución, hipertensión arterial, enfermedad renal crónica estadio G3a (FG 52 ml/min/1,73m2) y retinopatía diabética no proliferativa moderada en seguimiento por oftalmología. Tratamiento actual: insulina glargina 24 UI/noche + insulina aspártica 6-8 UI preprandial (pauta bolo-basal), empagliflozina 10 mg/día, ramipril 10 mg/día. Acude a revisión bimensual de diabetes. Autocontroles de glucemia capilar: ayunas 140-175 mg/dL, postprandiales 2h 185-220 mg/dL, hipoglucemias leves (< 70 mg/dL) 3-4 veces en el último mes, siempre nocturnas y asintomáticas detectadas por glucómetro. HbA1c: 8,2% (previo hace 3 meses 8,9%, mejoría). Análisis: creatinina 1,6 mg/dL, FG 48 ml/min (ligero empeoramiento, se suspende empagliflozina por FG < 45), K 5,0 mEq/L, microalbuminuria 320 mg/g (macroalbuminuria). TA 142/85 mmHg (fuera de objetivo). Se ajusta la insulina glargina reduciendo de 24 a 20 UI para evitar hipoglucemias nocturnas. Se suspende empagliflozina por FG. Se añade semaglutida 0,5 mg/semana SC con escalada a 1 mg a las 4 semanas. Se ajusta ramipril a máxima dosis y se añade espironolactona 25 mg para nefroprotección (con control de K en 2 semanas). Se planifica educación diabetológica enfocada en ajuste de insulina preprandial según ratio hidrato. Revisión en 6 semanas con analítica.',
+    'OPEN',
+    87,
+    1,
+    24,
+    47
+),
+(
+    '2026-06-03 09:45:00+02',
+    'DOLOR TORÁCICO',
+    'Paciente varón de 49 años sin antecedentes cardiovasculares conocidos, fumador de 20 cig/día, que acude a consulta por episodios de dolor torácico de 3 semanas de evolución. El dolor es retroesternal, de tipo opresivo, de intensidad 6/10, que aparece con esfuerzos moderados (subir dos pisos de escaleras, caminar rápido en cuesta) y cede en 3-5 minutos con reposo. Niega dolor en reposo, irradiación, disnea asociada, palpitaciones o síncope. No dolor nocturno. Historia familiar: hermano con stent coronario a los 52 años. Perfil lipídico previo desconocido. Exploración física: TA 138/86 mmHg, FC 76 lpm, ritmo sinusal, SatO2 98%. Auscultación cardiopulmonar normal. Pulsos periféricos conservados. ECG en reposo: normal, sin alteraciones de la repolarización. Analítica urgente: troponina I ultrasensible 6 pg/mL (normal < 15,6), CK 145 U/L, glucosa 115 mg/dL, colesterol total 245 mg/dL, LDL 165 mg/dL (muy elevado), TG 198 mg/dL. Diagnóstico provisional: angina estable probable. Se deriva a cardiología de forma preferente (en 48-72 horas) para ergometría y/o TC coronario. Se inicia tratamiento con AAS 100 mg/día, atorvastatina 40 mg/noche, bisoprolol 5 mg/día como antianginoso. Se indica restricción de esfuerzos hasta valoración cardiológica. Se instruye al paciente para acudir a urgencias si el dolor ocurre en reposo, dura más de 15 minutos o no cede con reposo.',
+    'OPEN',
+    88,
+    1,
+    12,
+    48
+),
+(
+    '2026-06-03 10:15:00+02',
+    'CONSULTA GENERAL',
+    'Paciente mujer de 35 años que acude a consulta de medicina general por revisión de analítica solicitada en consulta anterior hace 3 semanas, en contexto de cansancio, irregularidades menstruales (ciclos de 35-45 días) y moderada ganancia de peso (6 kg en 6 meses sin cambios dietéticos evidentes). Refiere también intolerancia al frío, piel seca, caída de cabello difusa y estreñimiento de nueva aparición. TSH: 18,5 mU/L (elevada, normal 0,4-4 mU/L), T4 libre 0,65 ng/dL (baja, normal 0,8-1,8), anticuerpos anti-TPO: 486 UI/mL (muy elevados, positivos). Hemograma: anemia leve normocítica (Hb 11,2 g/dL, VCM 88 fl). Glucosa, función renal y hepática normales. Colesterol total 240 mg/dL (elevado), LDL 158 mg/dL. Diagnóstico: hipotiroidismo primario autoinmune (tiroiditis de Hashimoto). Exploración tiroidea: glándula de tamaño normal a la palpación, consistencia aumentada, sin nódulos palpables. Ecografía tiroidea solicitada en consulta actual. Se inicia levotiroxina sódica 50 mcg/día en ayunas (30 minutos antes del desayuno), con aumento a 75 mcg a las 4 semanas si se tolera bien. Se explica a la paciente el diagnóstico, el carácter crónico del tratamiento y la importancia de la adherencia. Se espera normalización del colesterol con el control del hipotiroidismo. Revisión analítica (TSH, T4L) en 6 semanas.',
+    'CLOSED',
+    89,
+    1,
+    1,
+    49
+),
+(
+    '2026-06-03 10:45:00+02',
+    'SEGUIMIENTO CLÍNICO',
+    'Paciente varón de 70 años con EPOC muy grave (GOLD D, FEV1 28% teórico) en oxigenoterapia domiciliaria crónica (ODC) 16 horas/día incluyendo el sueño, en seguimiento estrecho por neumología. Antecedentes: 2 exacerbaciones graves en el último año con ingreso hospitalario (febrero y octubre de 2025). Tratamiento actual: triple terapia inhalatoria con beclometasona/formoterol/glicopirronio 87/5/9 mcg 2 pulsaciones/12h + carbocisteína 750 mg/8h + azitromicina 250 mg tres veces/semana (profilaxis antibiótica). Acude a revisión mensual. Refiere el mejor período de los últimos 6 meses: sin exacerbaciones desde hace 5 meses, mejora subjetiva de la disnea en reposo y pequeños esfuerzos (mMRC 3 actual vs 4 hace 3 meses). Cumple correctamente las 16 horas diarias de oxigenoterapia. Exploración: TA 108/65 mmHg, FC 88 lpm, SatO2 en reposo con O2 a 2L/min: 94%. SatO2 sin O2: 82%. Tórax en barril, murmullo vesicular muy disminuido bilateralmente. No crepitantes ni sibilancias. Sin edemas en MMII. ECG: BCRDHH previo sin cambios, eje en +80º. Ecocardiograma reciente: cor pulmonale leve con PSAP estimada 42 mmHg, VD dilatado. Espirometría: FEV1 0,78 L (27% teórico, estable). Se mantiene tratamiento actual. Se tramita silla de ruedas eléctrica por limitación funcional severa. Valoración de rehabilitación pulmonar domiciliaria. Próxima revisión en 4 semanas.',
+    'OPEN',
+    90,
+    1,
+    2,
+    50
+);
 
 
 --==========================
