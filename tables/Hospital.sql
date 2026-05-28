@@ -213,12 +213,6 @@ CREATE TABLE role_permissions (
     FOREIGN KEY (page_id) REFERENCES pages(id) ON DELETE CASCADE
 );
 
-CREATE TABLE patient_permissions (
-    page_id BIGINT,
-    PRIMARY KEY (page_id),
-    FOREIGN KEY (page_id) REFERENCES pages(id) ON DELETE CASCADE
-);
-
 -- Una cuenta web pertenece a un empleado O a un paciente o a ambos, nunca a ninguno o sanitario y administrativo.
 CREATE TABLE web_accounts (
     id BIGSERIAL,
@@ -266,9 +260,17 @@ CREATE TABLE medications (
 	FOREIGN KEY (medicine_type_id) REFERENCES medication_types(id) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
+CREATE SEQUENCE medical_number_seq START 1000;
+CREATE OR REPLACE FUNCTION generate_medical_number()
+    RETURNS TEXT AS $$
+    BEGIN
+        RETURN 'MED' || nextval('medical_number_seq');
+    END;
+$$ LANGUAGE plpgsql;
+
 CREATE TABLE medical_staff (
     id BIGSERIAL,
-    medical_number VARCHAR(20) NOT NULL,
+    medical_number VARCHAR(20) NOT NULL DEFAULT generate_medical_number(),
     employee_id BIGINT NOT NULL,
     PRIMARY KEY (id),
     UNIQUE (medical_number),
@@ -443,9 +445,8 @@ CREATE OR REPLACE FUNCTION check_room_capacity()
 RETURNS TRIGGER AS $$
 DECLARE
     active_patients INT;
-    room_capacity INT;
+    room_capacity   INT;
 BEGIN
-
     SELECT max_capacity
     INTO room_capacity
     FROM rooms
@@ -456,14 +457,40 @@ BEGIN
     FROM admissions a
     WHERE a.room_id = NEW.room_id
       AND a.id <> COALESCE(NEW.id, -1)
-      AND tstzrange(
-            a.admission_time,
-            COALESCE(a.discharge_time, 'infinity')
-          ) &&
-          tstzrange(
-            NEW.admission_time,
-            COALESCE(NEW.discharge_time, 'infinity')
-          );
+      AND (
+            -- Ambos CON alta → solapamiento clásico
+            (
+                a.discharge_time IS NOT NULL
+                AND NEW.discharge_time IS NOT NULL
+                AND tstzrange(a.admission_time, a.discharge_time) &&
+                    tstzrange(NEW.admission_time, NEW.discharge_time)
+            )
+            OR
+            -- Existente CON alta, nuevo SIN alta
+            -- Solo solapa si el nuevo entra DENTRO del rango del existente
+            (
+                a.discharge_time IS NOT NULL
+                AND NEW.discharge_time IS NULL
+                AND NEW.admission_time >= a.admission_time
+                AND NEW.admission_time < a.discharge_time
+            )
+            OR
+            -- Existente SIN alta, nuevo CON alta
+            -- Solo solapa si el existente está activo cuando el nuevo entra
+            (
+                a.discharge_time IS NULL
+                AND NEW.discharge_time IS NOT NULL
+                AND a.admission_time >= NEW.admission_time
+                AND a.admission_time < NEW.discharge_time
+            )
+            OR
+            -- Ninguno CON alta → solo si entran exactamente a la vez
+            (
+                a.discharge_time IS NULL
+                AND NEW.discharge_time IS NULL
+                AND a.admission_time = NEW.admission_time
+            )
+      );
 
     IF active_patients >= room_capacity THEN
         RAISE EXCEPTION
@@ -485,7 +512,7 @@ EXECUTE FUNCTION check_room_capacity();
 CREATE TABLE bills (
     id BIGSERIAL,
     patient_id BIGINT NOT NULL,
-    administrative_staff_id BIGINT NOT NULL,
+    administrative_staff_id BIGINT NULL,
     amount NUMERIC(10,2) NOT NULL,
     bill_date TIMESTAMPTZ NOT NULL,
     reason TEXT NOT NULL,
@@ -498,18 +525,33 @@ CREATE TABLE bills (
 
 CREATE TABLE administrative_incidents (
     id BIGSERIAL,
-    employee_id BIGINT NOT NULL,
-    assigned_administrative_id BIGINT NULL,
+
+    employee_id BIGINT NOT NULL, -- solicitante
+    assigned_department_id BIGINT NULL,
+
+    assigned_employee_id BIGINT NULL, -- empleado que resuelve
+
     title VARCHAR(100) NOT NULL,
     description TEXT NOT NULL,
+
     priority VARCHAR(15) NOT NULL,
-    state VARCHAR(20) NOT NULL,
+    state VARCHAR(20) NOT NULL DEFAULT 'ABIERTA',
+
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     assigned_at TIMESTAMPTZ NULL,
     closed_at TIMESTAMPTZ NULL,
+
     PRIMARY KEY(id),
-    FOREIGN KEY (employee_id) REFERENCES employees(id),
-    FOREIGN KEY (assigned_administrative_id) REFERENCES administrative_staff(id),
+
+    FOREIGN KEY (employee_id)
+        REFERENCES employees(id),
+
+    FOREIGN KEY (assigned_department_id)
+        REFERENCES departments(id),
+
+    FOREIGN KEY (assigned_employee_id)
+        REFERENCES employees(id),
+
     CHECK (state IN ('ABIERTA', 'EN_PROCESO', 'CERRADA')),
     CHECK (priority IN ('BAJA', 'MEDIA', 'ALTA', 'URGENTE'))
 );
@@ -549,11 +591,13 @@ CREATE TABLE login_audit (
 
     login_time TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 
+    user_login VARCHAR(255),
     account_id BIGINT NULL,
-
+    
     attempted_login VARCHAR(50) NULL,
 
     successful BOOLEAN NOT NULL,
+    event VARCHAR(30),
 
     PRIMARY KEY (id),
 
