@@ -1,4 +1,3 @@
-
 --==========================
 --=     STARTER DATA       =
 --==========================
@@ -425,6 +424,8 @@ INSERT INTO rooms (room_number, max_capacity) VALUES
 -- Páginas de todos empleados
 INSERT INTO pages (page_key, page_label, page_url, section, is_active) VALUES
 ('horarios',     'Horario',     '/main/pages/employee/horarios/index.php', 'employee', true),
+('incidencias',   'Incidencias',   '/main/pages/employee/incidencias/index.php', 'employee', true),
+
 
 -- =========================
 -- EMPLOYEE
@@ -438,14 +439,13 @@ INSERT INTO pages (page_key, page_label, page_url, section, is_active) VALUES
 ('ingresos',      'Ingresos',      '/main/pages/sanitary/ingresos/index.php', 'sanitary', true),
 ('informes',      'Informes',      '/main/pages/sanitary/informes/index.php', 'sanitary', true),
 
+
 -- =========================
 -- ADMINISTRATION (gestión interna)
 -- =========================
 ('personal',      'Personal',      '/main/pages/administration/personal/index.php', 'administration', true),
 ('facturacion',   'Facturación',   '/main/pages/administration/facturacion/index.php', 'administration', true),
 ('departamentos', 'Departamentos', '/main/pages/administration/departamentos/index.php', 'administration', true),
-('incidencias',   'Incidencias',   '/main/pages/administration/incidencias/index.php', 'administration', true),
-('configuracion', 'Configuración', '/main/pages/administration/config_site/index.php', 'administration', true),
 
 -- =========================
 -- PATIENT (portal paciente)
@@ -524,7 +524,7 @@ INSERT INTO employees (document_type, document_number, birth_date, employee_name
 ('DNI','94959697L', '1990-10-01', 'IVAN',      'CANO'),
 ('DNI','95969798M', '1982-12-24', 'CRISTINA',  'RAMOS'),
 ('DNI','96979899N', '1993-07-08', 'RAUL',      'BLANCO'),
-('DNI','97989900P', '1985-02-11', 'SARA',      'VIDAL'),
+('DNI','97989900P', '1985-02-11', 'SONIA',      'VIDAL'),
 ('DNI','98990001Q', '1992-09-27', 'JAVIER',    'FUENTES'),
 ('DNI','99000102R', '1988-06-15', 'ANDREA',    'ROMERO'),
 ('DNI','00010203S', '1995-11-03', 'MANUEL',    'CASTILLO'),
@@ -709,7 +709,8 @@ INSERT INTO medical_staff_specialty (medical_staff_id, specialty_id) VALUES
 --==========================
 
 INSERT INTO medical_staff_department (medical_staff_id, department_id) VALUES
-(1,24),(1,40),
+-- 1: Médico: URGENCIAS/UCI.
+(1,1),(1,2),
 (2,1),(2,2),
 (3,12),(3,21),
 (4,6),(4,7),
@@ -717,46 +718,74 @@ INSERT INTO medical_staff_department (medical_staff_id, department_id) VALUES
 (6,14),(6,10),
 (7,20),(7,18),
 (8,5),(8,15),
-(9,29),(9,1),
+-- 9: Médico: URGENCIAS/CONSULTAS EXTERNAS.
+(9,1),(9,4),
 (10,10),(10,11),
 (11,14),(11,23),
 (12,12),(12,21),
-(13,33),(13,34),
+-- 13: Enfermero: HOSPITALIZACION/UCI.
+(13,3),(13,2),
 (14,1),(14,2),
 (15,6),(15,7),
-(16,11),(16,18),
+-- 16: Auxiliar: REHABILITACION/FISIOTERAPIA.
+(16,10),(16,11),
+-- 17: Auxiliar: MICROBIOLOGIA/LABORATORIO.
 (17,19),(17,8),
 (18,14),(18,15),
-(19,7),(19,19),
+-- 19: Auxiliar:RADIOLOGIA/LABORATORIO.
+(19,7),(19,8),
 (20,13),(20,22),
-(21,30),(21,21),
-(22,29),(22,1),
-(23,9),(23,8),
-(24,17),(24,18),
-(25,31),(25,6),
-(26,28),(26,27),
-(27,25),(27,24),
-(28,20),(28,21),
-(29,1),(29,2),
+-- 21: Técnico de laboratorio: LABORATORIO/MICROBIOLOGIA.
+(21,8),(21,19),
+-- 22: Técnico de laboratorio: LABORATORIO/ANATOMIA PATOLOGICA.
+(22,8),(22,18),
+-- 23: Técnico de laboratorio: LABORATORIO/BANCO DE SANGRE.
+(23,8),(23,17),
+-- 24: Técnico de radiología: RADIOLOGIA/MEDICINA NUCLEAR.
+(24,7),(24,20),
+-- 25: Técnico radiología: RADIOLOGIA/HOSPITAL DE DIA.
+(25,7),(25,22),
+-- 26: Fisioterapeuta: REHABILITACION/FISIOTERAPIA.
+(26,10),(26,11),
+-- 27: Fisioterapeuta: REHABILITACION/ATENCION DOMICILIARIA.
+(27,10),(27,23),
+-- 28: Nutricionista: CONSULTAS EXTERNAS/ONCOLOGIA.
+(28,4),(28,13),
+-- 29: Psicólogo:  SALUD MENTAL/CUIDADOS PALIATIVOS.
+(29,12),(29,21),
 (30,3),(30,4),
-(31,6),(31,7),
-(32,18),(32,10),
-(33,8),(33,19),
-(34,19),(34,12),
-(35,13),(35,21),
-(36,14),(36,22),
+-- 31: Terapeuta ocupacional:REHABILITACION/ATENCION DOMICILIARIA.
+(31,10),(31,23),
+-- 32: Logopeda: REHABILITACION/SALUD MENTAL.
+(32,10),(32,12),
+-- 33: Farmacéutico: FARMACIA/HOSPITALIZACION.
+(33,9),(33,3),
+-- 34: Farmacéutico: FARMACIA/HOSPITAL DE DIA.
+(34,9),(34,22),
+-- 35: Analista clínico: LABORATORIO/MICROBIOLOGIA.
+(35,8),(35,19),
+-- 36: Analista clínico: LABORATORIO/ANATOMIA PATOLOGICA.
+(36,8),(36,18),
 (37,15),(37,5),
-(38,16),(38,7),
+-- 38: Médico: NEONATOLOGIA/UCI.
+(38,16),(38,2),
 (39,17),(39,8),
-(40,18),(40,9),
+-- 40: Médico: ONCOLOGIA/HOSPITAL DE DIA.
+(40,13),(40,22),
 (41,20),(41,21),
 (42,22),(42,23),
-(43,24),(43,25),
-(44,26),(44,27),
-(45,28),(45,29),
-(46,30),(46,31),
-(47,32),(47,33),
-(48,34),(48,35),
+-- 43: Médico: DIRECCION MEDICA/CALIDAD.
+(43,36),(43,38),
+-- 44: Médico: URGENCIAS/CONSULTAS EXTERNAS.
+(44,1),(44,4),
+-- 45: Médico: ONCOLOGIA/QUIROFANO.
+(45,13),(45,6),
+-- 46: Médico: HOSPITALIZACION/QUIROFANO.
+(46,3),(46,6),
+-- 47: Médico: HOSPITALIZACION/CONSULTAS EXTERNAS.
+(47,3),(47,4),
+-- 48: Médico: DOCENCIA/INVESTIGACION CLINICA.
+(48,47),(48,48),
 (49,36),(49,37),
 (50,38),(50,39);
 
@@ -765,31 +794,44 @@ INSERT INTO medical_staff_department (medical_staff_id, department_id) VALUES
 --==========================
 
 INSERT INTO administrative_department (administrative_id, department_id) VALUES
+-- CORREGIDO:
+-- Se estaban usando employee_id en vez de administrative_staff.id
 
--- Dirección / alta gestión
-(1,36),(1,37),
-(2,37),
-(3,24),(3,38),
-(4,25),(4,26),
-(5,27),(5,35),
-(6,28),(6,29),
 
--- Operación hospitalaria
-(7,29),(7,30),
-(8,43),(8,42),
-(9,25),(9,26),
-(10,27),(10,35),
+-- 51 (ADMINISTRATIVO): Administrativo: administración y calidad.
+(1,24),(1,38),
+-- 52 (ADMINISTRATIVO): Administrativo: administración y gestión documental.
+(2,24),(2,35),
+-- 53 (ADMINISTRATIVO): Administrativo: admisiones y atención al paciente.
+(3,25),(3,26),
+-- 54 (ADMINISTRATIVO): Administrativo: administración y compras.
+(4,24),(4,31),
+-- 55 (RECEPCIONISTA): Recepcionista: admisiones y call center.
+(5,25),(5,44),
+-- 56 (RECEPCIONISTA): Recepcionista: atención al paciente y call center.
+(6,26),(6,44),
+-- 57 (RRHH): RRHH: recursos humanos y gestión documental.
+(7,27),(7,35),
+-- 58 (RRHH): RRHH: recursos humanos y asesoría jurídica.
+(8,27),(8,45),
+-- 59 (SOPORTE_IT): Soporte IT: soporte técnico e ingeniería biomédica.
+(9,43),(9,42),
+-- 60 (SOPORTE_IT): Soporte IT: soporte técnico y mantenimiento.
+(10,43),(10,40),
+-- 61 (GESTOR_CITAS): Gestor de citas: call center y atención al paciente.
 (11,44),(11,26),
-(12,43),(12,20),
-
--- RRHH / gestión interna
+-- 62 (GESTOR_CITAS): Gestor de citas: call center y admisiones.
+(12,44),(12,25),
+-- 63 (GESTOR_FACTURACION): Gestor de facturación: facturación y finanzas.
 (13,28),(13,29),
-(14,30),(14,31),
-(15,32),(15,33),
-
--- Soporte / IT / sistemas
-(16,43),(16,42),
-(17,37),(17,36);
+-- 64 (GESTOR_FACTURACION): Gestor de facturación: facturación y contabilidad.
+(14,28),(14,30),
+-- 65 (DIRECTOR): Dirección: dirección administrativa y dirección médica.
+(15,37),(15,36),
+-- 66 (SUBDIRECTOR): Subdirección: dirección administrativa y calidad.
+(16,37),(16,38),
+-- 67 (GERENCIA): Gerencia: dirección administrativa y finanzas.
+(17,37),(17,29);
 
 --==========================
 --= PATIENTS
@@ -1036,7 +1078,7 @@ CROSS JOIN LATERAL (
         AND DATE(s2.shift_start) = DATE(s.shift_start)
     )
 
-    -- Máximo 6 turnos semanales
+    -- Máximo 5 turnos semanales para evitar sobrecarga
     AND (
         SELECT COUNT(*)
         FROM assigned_to_schedule ats2
@@ -1045,7 +1087,20 @@ CROSS JOIN LATERAL (
         WHERE ats2.employee_id = er.employee_id
         AND date_trunc('week', s3.shift_start)
             = date_trunc('week', s.shift_start)
-    ) < 6
+    ) < 5
+
+    
+    -- Mínimo 11 horas entre turnos para cumplir descanso sanitario
+    AND NOT EXISTS (
+        SELECT 1
+        FROM assigned_to_schedule ats3
+        JOIN schedules s4
+            ON s4.id = ats3.schedule_id
+        WHERE ats3.employee_id = er.employee_id
+        AND ABS(EXTRACT(EPOCH FROM (
+            s.shift_start - s4.shift_end
+        )) / 3600) < 11
+    )
 
     GROUP BY er.employee_id
 
@@ -1104,6 +1159,19 @@ CROSS JOIN LATERAL (
         AND date_trunc('week', s3.shift_start)
             = date_trunc('week', s.shift_start)
     ) < 5
+
+    
+    -- Mínimo 11 horas entre turnos para cumplir descanso sanitario
+    AND NOT EXISTS (
+        SELECT 1
+        FROM assigned_to_schedule ats3
+        JOIN schedules s4
+            ON s4.id = ats3.schedule_id
+        WHERE ats3.employee_id = er.employee_id
+        AND ABS(EXTRACT(EPOCH FROM (
+            s.shift_start - s4.shift_end
+        )) / 3600) < 11
+    )
 
     GROUP BY er.employee_id
 
@@ -1508,7 +1576,7 @@ INSERT INTO reports (
     'REVISIÓN GINECOLÓGICA',
     'Paciente mujer de 38 años que acude a revisión ginecológica anual de control rutinario. Sin motivo de consulta específico. Refiere ciclos menstruales regulares de 28 días, duración 4-5 días, flujo moderado sin dismenorrea significativa (EVA 2/10). Anticoncepción con DIU de cobre colocado hace 3 años en seguimiento habitual. Niega dispareunia, flujo vaginal anormal, sangrado intermenstrual, síntomas urinarios o digestivos de nueva aparición. G1P1 (parto vaginal eutócico en 2019, sin complicaciones). Última revisión hace 12 meses sin incidencias. Exploración ginecológica: genitales externos normales. Espéculo: vagina con mucosa normal, cérvix de aspecto normal, sin lesiones visibles, hilos del DIU visibles y en posición correcta. Tacto bimanual: útero anteverso de tamaño normal, no doloroso, anejos no palpables. Ecografía transvaginal: útero en AVF de 68x45x40 mm con endometrio trilaminar de 8 mm (fase proliferativa), DIU en cavidad con buena posición, ovarios de aspecto normal con folículo dominante en ovario izquierdo de 14 mm. Sin imágenes sugestivas de patología. Citología cervical (Papanicolaou + VPH): NILM (negativo para lesión intraepitelial o malignidad), VPH negativo. Exploración mamaria: mamas de textura normal, sin nódulos palpables, sin secreción por pezón. Se solicita mamografía de inicio a los 40 años (en 2 años). Alta. Próxima revisión en 1 año.',
     'CLOSED',
-    74,
+    3,
     3,
     18,
     NULL
@@ -1773,7 +1841,8 @@ INSERT INTO admissions (
 ('DOLOR TORÁCICO','2026-06-02 13:00:00+02','2026-06-05 10:00:00+02',41,88,1),
 ('DESCOMPENSACIÓN DIABÉTICA','2026-06-03 09:00:00+02',NULL,14,87,1),
 ('INSUFICIENCIA RESPIRATORIA','2026-06-03 16:00:00+02',NULL,42,83,1),
-('CONTROL POSTOPERATORIO','2026-06-04 11:00:00+02','2026-06-08 09:00:00+02',18,79,1);
+('CONTROL POSTOPERATORIO','2026-06-04 11:00:00+02','2026-06-08 09:00:00+02',18,79,1),
+('INGRESO OBSTÉTRICO POR INICIO DE TRABAJO DE PARTO','2026-05-04 11:00:00+02','2026-05-22 11:00:00+02',8,3,3);
 
 
 --==========================
@@ -1862,7 +1931,8 @@ INSERT INTO bills (
 
 INSERT INTO administrative_incidents (
     employee_id,
-    assigned_administrative_id,
+    assigned_department_id,
+    assigned_employee_id,
     title,
     description,
     priority,
@@ -1871,26 +1941,122 @@ INSERT INTO administrative_incidents (
     assigned_at,
     closed_at
 ) VALUES
-(1,1,'Error en nómina','El salario no coincide con las horas trabajadas','ALTA','EN_PROCESO','2026-05-10 09:00:00+02','2026-05-10 10:00:00+02',NULL),
-(5,2,'Problema acceso sistema','No puede acceder al portal interno','URGENTE','ABIERTA','2026-05-11 08:30:00+02',NULL,NULL),
-(12,3,'Solicitud cambio turno','Petición de modificación de horario','MEDIA','CERRADA','2026-05-09 12:00:00+02','2026-05-09 13:00:00+02','2026-05-10 15:00:00+02'),
-(20,4,'Fallo impresora','Impresora de planta no funciona','BAJA','EN_PROCESO','2026-05-12 11:00:00+02','2026-05-12 11:30:00+02',NULL),
-(33,5,'Incidencia material','Falta material clínico','ALTA','ABIERTA','2026-05-13 14:00:00+02',NULL,NULL),
-(8,1,'Retraso en guardia','El empleado llegó tarde al turno nocturno','MEDIA','EN_PROCESO','2026-05-16 08:00:00+02','2026-05-16 09:00:00+02',NULL),
 
-(15,2,'Error ficha paciente','Datos clínicos incompletos en admisión','ALTA','ABIERTA','2026-05-16 10:00:00+02',NULL,NULL),
+-- RRHH (27)
+(1,27,27,'Error en nómina',
+'El salario no coincide con las horas trabajadas',
+'ALTA','EN_PROCESO',
+'2026-05-10 09:00:00+02',
+'2026-05-10 10:00:00+02',
+NULL),
 
-(27,3,'Solicitud vacaciones','Petición de vacaciones verano','BAJA','CERRADA','2026-05-15 12:00:00+02','2026-05-15 13:00:00+02','2026-05-16 09:00:00+02'),
+-- SOPORTE IT (43)
+(5,43,NULL,
+'Problema acceso sistema',
+'No puede acceder al portal interno',
+'URGENTE','ABIERTA',
+'2026-05-11 08:30:00+02',
+NULL,
+NULL),
 
-(33,4,'Fallo stock farmacia','Medicamento no disponible en almacén','URGENTE','EN_PROCESO','2026-05-17 11:00:00+02','2026-05-17 11:15:00+02',NULL),
+-- RECURSOS HUMANOS (27)
+(12,27,19,
+'Solicitud cambio turno',
+'Petición de modificación de horario',
+'MEDIA','CERRADA',
+'2026-05-09 12:00:00+02',
+'2026-05-09 13:00:00+02',
+'2026-05-10 15:00:00+02'),
 
-(41,5,'Incidencia equipo médico','Monitor cardíaco con errores','ALTA','ABIERTA','2026-05-18 07:30:00+02',NULL,NULL),
+-- MANTENIMIENTO (40)
+(20,40,40,
+'Fallo impresora',
+'Impresora de planta no funciona',
+'BAJA','EN_PROCESO',
+'2026-05-12 11:00:00+02',
+'2026-05-12 11:30:00+02',
+NULL),
 
-(59,1,'Problema VPN','No conecta al sistema remoto','MEDIA','CERRADA','2026-05-18 09:00:00+02','2026-05-18 09:15:00+02','2026-05-18 10:00:00+02'),
+-- ALMACEN (33)
+(33,33,NULL,
+'Incidencia material',
+'Falta material clínico',
+'ALTA','ABIERTA',
+'2026-05-13 14:00:00+02',
+NULL,
+NULL),
 
-(74,2,'Actualización servidores','Mantenimiento programado sistemas','BAJA','EN_PROCESO','2026-05-19 14:00:00+02','2026-05-19 14:30:00+02',NULL),
+-- URGENCIAS (1)
+(8,1,26,
+'Retraso en guardia',
+'El empleado llegó tarde al turno nocturno',
+'MEDIA','EN_PROCESO',
+'2026-05-16 08:00:00+02',
+'2026-05-16 09:00:00+02',
+NULL),
 
-(76,3,'Falta personal planta','Necesidad refuerzo turno noche','ALTA','ABIERTA','2026-05-20 06:00:00+02',NULL,NULL);
+-- ADMISIONES (25)
+(15,25,NULL,
+'Error ficha paciente',
+'Datos clínicos incompletos en admisión',
+'ALTA','ABIERTA',
+'2026-05-16 10:00:00+02',
+NULL,
+NULL),
+
+-- RECURSOS HUMANOS (27)
+(27,27,19,
+'Solicitud vacaciones',
+'Petición de vacaciones verano',
+'BAJA','CERRADA',
+'2026-05-15 12:00:00+02',
+'2026-05-15 13:00:00+02',
+'2026-05-16 09:00:00+02'),
+
+-- FARMACIA (9)
+(33,9,8,
+'Fallo stock farmacia',
+'Medicamento no disponible en almacén',
+'URGENTE','EN_PROCESO',
+'2026-05-17 11:00:00+02',
+'2026-05-17 11:15:00+02',
+NULL),
+
+-- UCI (2)
+(41,2,NULL,
+'Incidencia equipo médico',
+'Monitor cardíaco con errores',
+'ALTA','ABIERTA',
+'2026-05-18 07:30:00+02',
+NULL,
+NULL),
+
+-- SOPORTE IT (43)
+(59,43,20,
+'Problema VPN',
+'No conecta al sistema remoto',
+'MEDIA','CERRADA',
+'2026-05-18 09:00:00+02',
+'2026-05-18 09:15:00+02',
+'2026-05-18 10:00:00+02'),
+
+-- SOPORTE IT (43)
+(74,43,20,
+'Actualización servidores',
+'Mantenimiento programado sistemas',
+'BAJA','EN_PROCESO',
+'2026-05-19 14:00:00+02',
+'2026-05-19 14:30:00+02',
+NULL),
+
+-- URGENCIAS (1)
+(76,1,NULL,
+'Falta personal planta',
+'Necesidad refuerzo turno noche',
+'ALTA','ABIERTA',
+'2026-05-20 06:00:00+02',
+NULL,
+NULL);
 
 --==========================
 --= SETTINGS
@@ -1914,7 +2080,7 @@ INSERT INTO settings (setting_name, setting_value) VALUES
 -- 10 fisioterapeuta
 -- 11 nutricionista
 -- 12 logopeda
----13 terapeuta_ocupacional
+-- 13 terapeuta_ocupacional
 -- 14 trabajador_social
 -- 15 recepcionista
 -- 16 administrativo
@@ -1929,79 +2095,80 @@ INSERT INTO settings (setting_name, setting_value) VALUES
 -- 25 celador
 -- 26 supervisor_planta
 -- 27 coordinador_urgencias
+
 INSERT INTO role_permissions (role_id, page_id) VALUES
 
 -- director (1) → acceso total
-(1, 2), (1, 3), (1, 4), (1, 5),
-(1, 6), (1, 7), (1, 8), (1, 9), (1,10),
+(1, 3), (1, 4), (1, 5), (1, 6),
+(1, 7), (1, 8), (1, 9),
 
 -- subdirector (2)
-(2, 2), (2, 3), (2, 4), (2, 5),
-(2, 6), (2, 7), (2, 8), (2, 9),
+(2, 3), (2, 4), (2, 5), (2, 6),
+(2, 7), (2, 8), (2, 9),
 
 -- gerencia (3)
-(3, 2), (3, 5), (3, 7), (3, 8),
+(3, 3), (3, 6), (3, 8), (3, 9),
 
 -- jefe_area (4)
-(4, 2), (4, 3), (4, 4), (4, 5),
-(4, 8),
+(4, 3), (4, 4), (4, 5), (4, 6),
+(4, 9),
 
 -- medico (5)
-(5, 2), (5, 3), (5, 4), (5, 5),
+(5, 3), (5, 4), (5, 5), (5, 6),
 
 -- enfermero (6)
-(6, 3), (6, 4), (6, 5),
+(6, 4), (6, 5), (6, 6),
 
 -- auxiliar_enfermeria (7)
-(7, 3), (7, 5),
+(7, 4), (7, 6),
 
 -- farmaceutico (8)
-(8, 3), (8, 5),
+(8, 4), (8, 6),
 
 -- psicologo (9)
-(9, 2), (9, 3), (9, 4), (9, 5),
+(9, 3), (9, 4), (9, 5), (9, 6),
 
 -- fisioterapeuta (10)
-(10, 3), (10, 4), (10, 5),
+(10, 4), (10, 5), (10, 6),
 
 -- nutricionista (11)
-(11, 2), (11, 3), (11, 5),
+(11, 3), (11, 4), (11, 6),
 
 -- logopeda (12)
-(12, 3), (12, 4), (12, 5),
+(12, 4), (12, 5), (12, 6),
 
 -- terapeuta_ocupacional (13)
-(13, 3), (13, 4), (13, 5),
+(13, 4), (13, 5), (13, 6),
 
 -- trabajador_social (14)
-(14, 2), (14, 3),
+(14, 3), (14, 4),
 
 -- recepcionista (15)
-(15, 2), (15, 3),
+(15, 3), (15, 4),
 
 -- administrativo (16)
-(16, 3), (16, 7), (16, 9),
+(16, 4), (16, 8),
 
 -- gestor_citas (17)
-(17, 2), (17, 3),
+(17, 3), (17, 4),
 
 -- gestor_facturacion (18)
-(18, 7),
+(18, 8),
 
 -- rrhh (19)
-(19, 6), (19, 9),
+(19, 7), (19, 8),
 
 -- soporte_it (20)
-(20, 9), (20,10),
+(20, 11),
 
 -- tecnico_laboratorio (21)
-(21, 3), (21, 5),
+(21, 4), (21, 6),
 
 -- tecnico_radiologia (22)
-(22, 3), (22, 5),
+(22, 4), (22, 6),
 
 -- tecnico_biomedico (23)
-(23, 9), (23,10),
+(23, 9),
 
 -- analista_clinico (24)
 (24, 2), (24, 5),
@@ -2019,11 +2186,10 @@ INSERT INTO role_permissions (role_id, page_id) VALUES
 --= Permisos genericos a todos los empleados (para la pagina de horarios)
 --===========================================
 
-
 INSERT INTO role_permissions (role_id, page_id)
 SELECT r.id, p.id
 FROM roles r
-JOIN pages p ON p.page_key = 'horarios'
+JOIN pages p ON p.page_key IN ('horarios', 'incidencias')
 WHERE NOT EXISTS (
     SELECT 1
     FROM role_permissions rp
@@ -2031,15 +2197,7 @@ WHERE NOT EXISTS (
       AND rp.page_id = p.id
 );
 
---==========================
---= PATIENT PERMISSIONS
---==========================
 
-INSERT INTO patient_permissions (page_id) VALUES
-(11),
-(12),
-(13),
-(14);
 --==========================
 --= NUEVOS PACIENTES (50) para carlos.lopez
 --==========================
